@@ -1,0 +1,97 @@
+{
+  "regime": "female_finetune_localization_folds",
+  "version": 1,
+  "split_seed": 42,
+  "unit": "speaker",
+  "k_folds": 4,
+  "base_model_split": "splits/cross_sex_male_train_female_test.json",
+  "description": "K-fold fine-tune/eval split over the 12 female speakers, for fine-tuning the male-only-trained model (zero prior female exposure, confirmed against sex metadata) on women and localizing what changed. Each fold: 9 women fine-tune (never eval'd that fold), 3 women eval (never fine-tuned on that fold, and untouched by any gradient update in that fold's run). Every woman is in the eval role in exactly one fold. NOT a population claim -- fine-tune female n<=9, eval female n=3 per fold, within-sample.",
+  "n_female_total": 12,
+  "n_flag": "fine-tune female n<=9, eval female n=3 per fold -- within-sample, not a population claim",
+  "folds": [
+    {
+      "fold": 0,
+      "finetune": [
+        "26",
+        "28",
+        "36",
+        "43",
+        "47",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "eval": [
+        "12",
+        "52",
+        "56"
+      ],
+      "n_finetune": 9,
+      "n_eval": 3
+    },
+    {
+      "fold": 1,
+      "finetune": [
+        "12",
+        "26",
+        "28",
+        "43",
+        "47",
+        "52",
+        "56",
+        "57",
+        "59"
+      ],
+      "eval": [
+        "36",
+        "58",
+        "60"
+      ],
+      "n_finetune": 9,
+      "n_eval": 3
+    },
+    {
+      "fold": 2,
+      "finetune": [
+        "12",
+        "26",
+        "36",
+        "52",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "eval": [
+        "28",
+        "43",
+        "47"
+      ],
+      "n_finetune": 9,
+      "n_eval": 3
+    },
+    {
+      "fold": 3,
+      "finetune": [
+        "12",
+        "28",
+        "36",
+        "43",
+        "47",
+        "52",
+        "56",
+        "58",
+        "60"
+      ],
+      "eval": [
+        "26",
+        "57",
+        "59"
+      ],
+      "n_finetune": 9,
+      "n_eval": 3
+    }
+  ]
+}

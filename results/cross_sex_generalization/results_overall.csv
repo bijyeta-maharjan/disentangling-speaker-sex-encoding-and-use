@@ -1,0 +1,31 @@
+arch,seed,condition,accuracy,ci_lo,ci_hi,n_speakers,n_flag,verdict
+cnn1d,42,male_only_on_female,0.8364999999999999,0.7748041666666667,0.8970124999999998,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,42,male_only_on_male_val_ref,0.9795999999999999,0.9591999999999998,0.9934,10,,
+cnn1d,42,si_baseline_on_female,0.9610000000000002,0.9194874999999999,0.9913333333333334,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,43,male_only_on_female,0.8626666666666666,0.8139833333333333,0.9063333333333331,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,43,male_only_on_male_val_ref,0.9882,0.978395,0.9960000000000001,10,,
+cnn1d,43,si_baseline_on_female,0.9691666666666666,0.9401666666666667,0.9940041666666668,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,44,male_only_on_female,0.8998333333333334,0.8489958333333332,0.9378500000000001,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,44,male_only_on_male_val_ref,0.9833999999999999,0.958595,0.9972,10,,
+cnn1d,44,si_baseline_on_female,0.9601666666666667,0.9223291666666666,0.9874999999999999,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,pooled[all_12_female],male_only_on_female,0.8663333333333333,0.8151916666666666,0.9130013888888888,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,pooled[all_12_female],si_baseline_on_female,0.9634444444444444,0.9271083333333333,0.9905597222222221,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,pooled[all_12_female],paired_diff_A_minus_C,-0.0971111111111111,-0.13273888888888885,-0.06265694444444446,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",TENSION_FLAG
+cnn1d,pooled[si_genuinely_held_out_n3],male_only_on_female,0.8462222222222221,0.6826666666666666,0.9813333333333333,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,pooled[si_genuinely_held_out_n3],si_baseline_on_female,0.9248888888888889,0.8033333333333333,0.9953333333333333,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+cnn1d,pooled[si_genuinely_held_out_n3],paired_diff_A_minus_C,-0.07866666666666666,-0.1206666666666667,-0.014000000000000012,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",TENSION_FLAG
+spec_cnn2d,42,male_only_on_female,0.9001666666666664,0.8778291666666667,0.9260041666666665,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,42,male_only_on_male_val_ref,0.9746,0.9547949999999998,0.990005,10,,
+spec_cnn2d,42,si_baseline_on_female,0.9570000000000002,0.934825,0.9741708333333334,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,43,male_only_on_female,0.8215,0.7625000000000001,0.8736708333333334,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,43,male_only_on_male_val_ref,0.9596,0.9315799999999999,0.9815999999999999,10,,
+spec_cnn2d,43,si_baseline_on_female,0.9901666666666666,0.9836625,0.9966708333333334,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,44,male_only_on_female,0.8478333333333333,0.8013250000000001,0.8929999999999999,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,44,male_only_on_male_val_ref,0.97,0.931995,0.9958050000000003,10,,
+spec_cnn2d,44,si_baseline_on_female,0.9699999999999999,0.9536541666666668,0.984,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,pooled[all_12_female],male_only_on_female,0.8565,0.8231069444444443,0.8876680555555555,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,pooled[all_12_female],si_baseline_on_female,0.9723888888888889,0.9617194444444445,0.9833333333333334,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,pooled[all_12_female],paired_diff_A_minus_C,-0.11588888888888889,-0.1545625,-0.08094166666666669,12,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",TENSION_FLAG
+spec_cnn2d,pooled[si_genuinely_held_out_n3],male_only_on_female,0.9073333333333333,0.8786666666666667,0.9579999999999999,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,pooled[si_genuinely_held_out_n3],si_baseline_on_female,0.9571111111111111,0.948,0.9666666666666667,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",
+spec_cnn2d,pooled[si_genuinely_held_out_n3],paired_diff_A_minus_C,-0.049777777777777775,-0.07133333333333325,-0.008666666666666822,3,"female test speakers n=12 (of 60 total; <=12 dataset-wide) -- directional, not a population claim",TENSION_FLAG

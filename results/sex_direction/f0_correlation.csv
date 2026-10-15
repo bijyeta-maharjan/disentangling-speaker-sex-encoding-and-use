@@ -1,0 +1,7 @@
+arch,stratum,spearman_rho,spearman_p,pearson_r,pearson_p,n_utts,n_speakers,directional,flag
+cnn1d,males_only,0.1878,3.81788098711006e-30,0.1748,2.847194992520926e-26,3627,9,False,"n=3 female test speakers — within-sample, not a population claim"
+cnn1d,all_cross_sex,0.6644,0.0,0.7721,0.0,5012,12,True,"n=3 female test speakers — within-sample, not a population claim"
+cnn1d,females_only,0.0615,0.022173610766381868,0.0563,0.036291926969423814,1385,3,True,"n=3 female test speakers — within-sample, not a population claim"
+spec_cnn2d,males_only,0.1336,6.64083029482913e-16,0.1359,2.0775059220736755e-16,3627,9,False,"n=3 female test speakers — within-sample, not a population claim"
+spec_cnn2d,all_cross_sex,0.6413,0.0,0.7778,0.0,5012,12,True,"n=3 female test speakers — within-sample, not a population claim"
+spec_cnn2d,females_only,0.0753,0.0050291455811341,0.0578,0.031388985676306845,1385,3,True,"n=3 female test speakers — within-sample, not a population claim"

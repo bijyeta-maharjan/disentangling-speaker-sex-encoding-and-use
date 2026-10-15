@@ -1,0 +1,2018 @@
+[
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8193333333333334,
+      "lo": 0.718,
+      "hi": 0.902,
+      "se": 0.04393981700217755,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9686666666666666,
+      "lo": 0.964,
+      "hi": 0.976,
+      "se": 0.0029762707405164347,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1493333333333332,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9166666666666666,
+      "lo": 0.87,
+      "hi": 0.972,
+      "se": 0.024244881917387776,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9466666666666667,
+      "lo": 0.86,
+      "hi": 0.996,
+      "se": 0.03513964948078311,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.030000000000000027,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8133333333333334,
+      "lo": 0.644,
+      "hi": 0.91,
+      "se": 0.06867007710900595,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.948,
+      "lo": 0.872,
+      "hi": 0.9940000000000001,
+      "se": 0.030964458520523954,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1346666666666666,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.7966666666666667,
+      "lo": 0.626,
+      "hi": 0.902,
+      "se": 0.0690561835741243,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9453333333333332,
+      "lo": 0.922,
+      "hi": 0.9620000000000001,
+      "se": 0.009665129950454935,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1486666666666665,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9626666666666667,
+      "lo": 0.892,
+      "hi": 0.9979999999999999,
+      "se": 0.028522616236423704,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9586666666666667,
+      "lo": 0.88,
+      "hi": 0.9979999999999999,
+      "se": 0.031751591659415074,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0040000000000000036,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9819999999999999,
+      "lo": 0.9739999999999999,
+      "hi": 0.988,
+      "se": 0.0033365992675852365,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9813333333333333,
+      "lo": 0.9659999999999999,
+      "hi": 0.9899999999999999,
+      "se": 0.006265639456061068,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0006666666666665932,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.991,
+      "lo": 0.982,
+      "hi": 1.0,
+      "se": 0.00640520902880638,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.988,
+      "lo": 0.976,
+      "hi": 1.0,
+      "se": 0.008540278705075174,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0030000000000000027,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.99,
+      "lo": 0.982,
+      "hi": 0.998,
+      "se": 0.005693519136716782,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.987,
+      "lo": 0.984,
+      "hi": 0.99,
+      "se": 0.0021350696762687934,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0030000000000000027,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8926666666666666,
+      "lo": 0.818,
+      "hi": 0.944,
+      "se": 0.03136292723519785,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9826666666666667,
+      "lo": 0.9780000000000001,
+      "hi": 0.9860000000000001,
+      "se": 0.0018980711867011984,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.09000000000000008,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9286666666666666,
+      "lo": 0.87,
+      "hi": 0.984,
+      "se": 0.027993684012055084,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.948,
+      "lo": 0.858,
+      "hi": 0.996,
+      "se": 0.03905461384859494,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.019333333333333313,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.82,
+      "lo": 0.702,
+      "hi": 0.884,
+      "se": 0.05122216848515984,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9613333333333333,
+      "lo": 0.892,
+      "hi": 1.0,
+      "se": 0.03011988889858028,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1413333333333333,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8093333333333333,
+      "lo": 0.7079999999999999,
+      "hi": 0.892,
+      "se": 0.04505638057278028,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9579999999999999,
+      "lo": 0.9499999999999998,
+      "hi": 0.9700000000000001,
+      "se": 0.004840100724103174,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1486666666666665,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9826666666666667,
+      "lo": 0.9540000000000001,
+      "hi": 1.0,
+      "se": 0.012502528468553684,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9593333333333334,
+      "lo": 0.878,
+      "hi": 1.0,
+      "se": 0.035277096986487066,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.023333333333333317,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.984,
+      "lo": 0.972,
+      "hi": 0.996,
+      "se": 0.005430017042798774,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.992,
+      "lo": 0.9819999999999999,
+      "hi": 0.9979999999999999,
+      "se": 0.004091882037610667,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.008000000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.995,
+      "lo": 0.99,
+      "hi": 1.0,
+      "se": 0.003579275235464749,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.995,
+      "lo": 0.99,
+      "hi": 1.0,
+      "se": 0.003579275235464749,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.0,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.996,
+      "lo": 0.994,
+      "hi": 0.998,
+      "se": 0.0014317100941858994,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.997,
+      "lo": 0.994,
+      "hi": 1.0,
+      "se": 0.0021475651412788494,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.0010000000000000009,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9393333333333334,
+      "lo": 0.902,
+      "hi": 0.9613333333333333,
+      "se": 0.015774943477889828,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9853333333333333,
+      "lo": 0.9780000000000001,
+      "hi": 0.9899999999999999,
+      "se": 0.002994974547338584,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.04599999999999993,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9580000000000001,
+      "lo": 0.91,
+      "hi": 0.988,
+      "se": 0.019557136333870073,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9533333333333333,
+      "lo": 0.868,
+      "hi": 0.996,
+      "se": 0.03423884925569067,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.004666666666666819,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8326666666666668,
+      "lo": 0.702,
+      "hi": 0.932,
+      "se": 0.05527660224402852,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9566666666666667,
+      "lo": 0.884,
+      "hi": 0.9979999999999999,
+      "se": 0.029331181375245253,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.12399999999999989,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8693333333333332,
+      "lo": 0.824,
+      "hi": 0.956,
+      "se": 0.034819497412609667,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9700000000000001,
+      "lo": 0.9579999999999999,
+      "hi": 0.9780000000000001,
+      "se": 0.004984958177382498,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1006666666666669,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9566666666666667,
+      "lo": 0.874,
+      "hi": 0.9979999999999999,
+      "se": 0.0331688852164503,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9660000000000001,
+      "lo": 0.898,
+      "hi": 1.0,
+      "se": 0.027284083000628484,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.009333333333333416,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9953333333333333,
+      "lo": 0.9899999999999999,
+      "hi": 0.9979999999999999,
+      "se": 0.0021702445754044853,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9933333333333333,
+      "lo": 0.98,
+      "hi": 1.0,
+      "se": 0.005425611438511227,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0020000000000000018,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.992,
+      "lo": 0.99,
+      "hi": 0.994,
+      "se": 0.0014428186738900109,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "se": 0.0,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.008000000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.997,
+      "lo": 0.994,
+      "hi": 1.0,
+      "se": 0.0021642280108350163,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.994,
+      "lo": 0.99,
+      "hi": 0.998,
+      "se": 0.0028856373477800217,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0030000000000000027,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8846666666666666,
+      "lo": 0.85,
+      "hi": 0.92,
+      "se": 0.016446121373794337,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9646666666666667,
+      "lo": 0.9380000000000001,
+      "hi": 0.996,
+      "se": 0.013712024376487617,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.08000000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9273333333333333,
+      "lo": 0.85,
+      "hi": 0.9700000000000001,
+      "se": 0.03130066379130001,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9826666666666667,
+      "lo": 0.96,
+      "hi": 0.9979999999999999,
+      "se": 0.009306911813076591,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.055333333333333345,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9146666666666666,
+      "lo": 0.888,
+      "hi": 0.9659999999999999,
+      "se": 0.020608073386143788,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9886666666666667,
+      "lo": 0.9819999999999999,
+      "hi": 0.996,
+      "se": 0.0033019246973101488,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.07400000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.874,
+      "lo": 0.854,
+      "hi": 0.902,
+      "se": 0.011755163966524674,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9293333333333335,
+      "lo": 0.92,
+      "hi": 0.94,
+      "se": 0.004664601096801385,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.055333333333333456,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.96,
+      "lo": 0.898,
+      "hi": 0.9940000000000001,
+      "se": 0.025087290729693294,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9446666666666667,
+      "lo": 0.86,
+      "hi": 0.9899999999999999,
+      "se": 0.03417852340474639,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.01533333333333331,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9873333333333333,
+      "lo": 0.976,
+      "hi": 0.996,
+      "se": 0.004748691359225278,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9953333333333333,
+      "lo": 0.992,
+      "hi": 0.9979999999999999,
+      "se": 0.0014229150902357614,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.008000000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.988,
+      "lo": 0.978,
+      "hi": 0.998,
+      "se": 0.007116898920895978,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "se": 0.0,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.01200000000000001,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.964,
+      "lo": 0.95,
+      "hi": 0.978,
+      "se": 0.009963658489254368,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.995,
+      "lo": 0.994,
+      "hi": 0.996,
+      "se": 0.0007116898920895979,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.031000000000000028,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.7926666666666667,
+      "lo": 0.7200000000000001,
+      "hi": 0.854,
+      "se": 0.03275197750140403,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.952,
+      "lo": 0.92,
+      "hi": 0.988,
+      "se": 0.01654076269729984,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.15933333333333322,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8846666666666666,
+      "lo": 0.844,
+      "hi": 0.9380000000000001,
+      "se": 0.02306758417480868,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9486666666666667,
+      "lo": 0.886,
+      "hi": 0.9940000000000001,
+      "se": 0.027932453951658796,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.06400000000000006,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.794,
+      "lo": 0.594,
+      "hi": 0.9,
+      "se": 0.08021325769915288,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9806666666666667,
+      "lo": 0.9700000000000001,
+      "hi": 0.996,
+      "se": 0.0062137920512437975,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.18666666666666665,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8146666666666667,
+      "lo": 0.684,
+      "hi": 0.928,
+      "se": 0.05958217287253882,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.926,
+      "lo": 0.908,
+      "hi": 0.9460000000000001,
+      "se": 0.009412311231245191,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1113333333333334,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9293333333333332,
+      "lo": 0.86,
+      "hi": 0.984,
+      "se": 0.03143719150781108,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.926,
+      "lo": 0.876,
+      "hi": 0.992,
+      "se": 0.028592756486587285,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": -0.0033333333333331883,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.968,
+      "lo": 0.926,
+      "hi": 0.992,
+      "se": 0.016824230464741314,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9780000000000001,
+      "lo": 0.9499999999999998,
+      "hi": 0.9940000000000001,
+      "se": 0.011383747104648255,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.01000000000000012,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.991,
+      "lo": 0.988,
+      "hi": 0.994,
+      "se": 0.0021475651412788494,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.983,
+      "lo": 0.974,
+      "hi": 0.992,
+      "se": 0.006442695423836548,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": -0.008000000000000007,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.961,
+      "lo": 0.942,
+      "hi": 0.98,
+      "se": 0.013601245894766047,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.985,
+      "lo": 0.984,
+      "hi": 0.986,
+      "se": 0.0007158550470929498,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.02400000000000002,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "female",
+    "finetune_speakers": [
+      "26",
+      "28",
+      "36",
+      "43",
+      "47",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8693333333333334,
+      "lo": 0.834,
+      "hi": 0.894,
+      "se": 0.014788598490458075,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9713333333333333,
+      "lo": 0.9566666666666667,
+      "hi": 0.9979999999999999,
+      "se": 0.010968015501023757,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.10199999999999987,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "28",
+      "43",
+      "47",
+      "52",
+      "56",
+      "57",
+      "59"
+    ],
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8686666666666666,
+      "lo": 0.7913333333333333,
+      "hi": 0.9659999999999999,
+      "se": 0.05517645631969006,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9826666666666667,
+      "lo": 0.9499999999999998,
+      "hi": 0.9993333333333334,
+      "se": 0.013098518765895949,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.1140000000000001,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "26",
+      "36",
+      "52",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60"
+    ],
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.7719999999999999,
+      "lo": 0.666,
+      "hi": 0.86,
+      "se": 0.04628179747661659,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.984,
+      "lo": 0.9579999999999999,
+      "hi": 1.0,
+      "se": 0.010573545472728797,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.21200000000000008,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "female",
+    "finetune_speakers": [
+      "12",
+      "28",
+      "36",
+      "43",
+      "47",
+      "52",
+      "56",
+      "58",
+      "60"
+    ],
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.8813333333333334,
+      "lo": 0.8306666666666667,
+      "hi": 0.952,
+      "se": 0.03482792033270671,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9620000000000001,
+      "lo": 0.9506666666666667,
+      "hi": 0.9780000000000001,
+      "se": 0.007775514356774174,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.08066666666666666,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "22",
+      "27",
+      "32",
+      "34",
+      "51",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.9213333333333334,
+      "lo": 0.806,
+      "hi": 0.984,
+      "se": 0.04654468362547991,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9473333333333334,
+      "lo": 0.858,
+      "hi": 0.9940000000000001,
+      "se": 0.0358510215656801,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.025999999999999912,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "34",
+      "39",
+      "42",
+      "53",
+      "55"
+    ],
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.984,
+      "lo": 0.9540000000000001,
+      "hi": 1.0,
+      "se": 0.012225060640472074,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.9933333333333333,
+      "lo": 0.98,
+      "hi": 1.0,
+      "se": 0.005425611438511227,
+      "n_speakers": 3,
+      "n_boot": 1000
+    },
+    "delta_point": 0.009333333333333305,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "22",
+      "27",
+      "32",
+      "39",
+      "42",
+      "51",
+      "53"
+    ],
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.996,
+      "lo": 0.992,
+      "hi": 1.0,
+      "se": 0.0028856373477800217,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.997,
+      "lo": 0.994,
+      "hi": 1.0,
+      "se": 0.0021642280108350163,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.0010000000000000009,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "male_control",
+    "finetune_speakers": [
+      "06",
+      "27",
+      "32",
+      "34",
+      "39",
+      "42",
+      "51",
+      "55"
+    ],
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "epochs": 2,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "before": {
+      "point": 0.996,
+      "lo": 0.992,
+      "hi": 1.0,
+      "se": 0.0028856373477800217,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "after": {
+      "point": 0.996,
+      "lo": 0.994,
+      "hi": 0.998,
+      "se": 0.0014428186738900109,
+      "n_speakers": 2,
+      "n_boot": 1000
+    },
+    "delta_point": 0.0,
+    "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409"
+  }
+]

@@ -1,0 +1,38 @@
+# Dataset (not redistributed) and derived caches
+/data/
+*.npy
+!results/**/*.npy
+
+# Checkpoints and run logs
+/experiments/
+*.pt
+*.pth
+
+# Regenerated figures (the committed paper figures live in figures/*.png)
+figures/output/
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# LaTeX build products
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/*.pdf
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

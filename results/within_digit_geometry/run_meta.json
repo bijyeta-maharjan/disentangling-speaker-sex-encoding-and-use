@@ -1,0 +1,18 @@
+{
+  "git_sha": "876bac5",
+  "created": "20260722-054845",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "archs": [
+    "cnn1d",
+    "resnet1d",
+    "crnn_gru",
+    "spec_cnn2d"
+  ],
+  "n_boot_direction": 200,
+  "smoke_test": false,
+  "elapsed_sec": 7065.2
+}

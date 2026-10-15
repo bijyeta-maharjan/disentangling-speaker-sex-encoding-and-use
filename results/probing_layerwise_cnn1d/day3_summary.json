@@ -1,0 +1,89 @@
+{
+  "per_attribute": {
+    "sex": {
+      "peak_trained_acc": 0.9918,
+      "peak_block": "conv3",
+      "untrained_at_peak": 0.99,
+      "trained_minus_untrained": 0.0018,
+      "selectivity_at_peak": 0.345,
+      "chance": 0.75,
+      "raw_acc": 0.9708,
+      "depth_trend_conv5_minus_conv1": 0.0212,
+      "trained_by_block": {
+        "conv1": 0.914,
+        "conv2": 0.9672,
+        "conv3": 0.9918,
+        "conv4": 0.9752,
+        "conv5": 0.9352
+      }
+    },
+    "accent": {
+      "peak_trained_acc": 0.7203,
+      "peak_block": "conv1",
+      "untrained_at_peak": 0.6828,
+      "trained_minus_untrained": 0.0375,
+      "selectivity_at_peak": 0.0128,
+      "chance": 0.75,
+      "raw_acc": 0.7348,
+      "depth_trend_conv5_minus_conv1": -0.0698,
+      "trained_by_block": {
+        "conv1": 0.7203,
+        "conv2": 0.6607,
+        "conv3": 0.6788,
+        "conv4": 0.6557,
+        "conv5": 0.6505
+      }
+    },
+    "age_bin": {
+      "peak_trained_acc": 0.5345,
+      "peak_block": "conv3",
+      "untrained_at_peak": 0.5222,
+      "trained_minus_untrained": 0.0123,
+      "selectivity_at_peak": -0.0175,
+      "chance": 0.5833,
+      "raw_acc": 0.494,
+      "depth_trend_conv5_minus_conv1": 0.0667,
+      "trained_by_block": {
+        "conv1": 0.4313,
+        "conv2": 0.4705,
+        "conv3": 0.5345,
+        "conv4": 0.5185,
+        "conv5": 0.498
+      }
+    },
+    "speaker_id": {
+      "peak_trained_acc": 0.9247,
+      "peak_block": "conv3",
+      "untrained_at_peak": 0.8809,
+      "trained_minus_untrained": 0.0438,
+      "selectivity_at_peak": 0.9097,
+      "chance": 0.0167,
+      "raw_acc": 0.9467,
+      "depth_trend_conv5_minus_conv1": 0.2903,
+      "trained_by_block": {
+        "conv1": 0.514,
+        "conv2": 0.8209,
+        "conv3": 0.9247,
+        "conv4": 0.8556,
+        "conv5": 0.8043
+      }
+    }
+  },
+  "cluster_mi": {
+    "conv5": {
+      "digit": {
+        "nmi": 0.9468,
+        "ami": 0.9465
+      },
+      "sex": {
+        "nmi": 0.0007,
+        "ami": -0.0001
+      },
+      "speaker_id": {
+        "nmi": 0.0215,
+        "ami": -0.0
+      },
+      "n_clusters": 10
+    }
+  }
+}

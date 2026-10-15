@@ -1,0 +1,20 @@
+{
+  "config": "configs/week2_probing.yaml",
+  "regime": "speaker_independent",
+  "seed": 42,
+  "device": "cuda",
+  "n_bands": 16,
+  "sr": 8000,
+  "n_test": 6000,
+  "groups": [
+    "all",
+    "female",
+    "male"
+  ],
+  "checkpoints": {
+    "cnn1d": "experiments/speaker_independent_seed42_f2f2b59_20260623-193637/best.pt",
+    "resnet1d": "experiments/speaker_independent_seed42_f2f2b59_20260623-195922/best.pt",
+    "crnn_gru": "experiments/speaker_independent_seed42_f2f2b59_20260623-204342/best.pt",
+    "spec_cnn2d": "experiments/speaker_independent_seed42_f2f2b59_20260623-211909/best.pt"
+  }
+}

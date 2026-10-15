@@ -1,0 +1,9 @@
+{
+  "git_sha": "f2f2b59",
+  "created": "20260624-225805",
+  "seed": 42,
+  "attributes": [
+    "sex",
+    "speaker_id"
+  ]
+}

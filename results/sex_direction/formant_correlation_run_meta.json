@@ -1,0 +1,27 @@
+{
+  "git_sha": "57f4492",
+  "primary_seed": 42,
+  "stability_seeds": [
+    43,
+    44
+  ],
+  "flag": "n=3 female test speakers \u2014 within-sample, not a population claim",
+  "speaker_count_note": "AudioMNIST is 48 male / 12 female speakers dataset-wide, but this analysis follows the 'speaker-disjoint SI test fold for everything' discipline: the whitened direction was fit ONLY on the 12 SI test speakers, so correlations here use that same fold -- n=9 male / n=3 female speakers (4500 / 1500 utterances), not the dataset-wide 48/12.",
+  "excluded_note": "resnet1d and crnn_gru EXCLUDED from this analysis: their whitened sex direction sat INSIDE the random-re-split null in the re-split control (not separable from an arbitrary 3-vs-9 grouping of the same 12 speakers), so there is no validated direction to project for them. Stated explicitly, not silently dropped.",
+  "scope_archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "excluded_archs": [
+    "resnet1d",
+    "crnn_gru"
+  ],
+  "intersection_drop_flag_threshold": 0.25,
+  "formant_extraction": {
+    "tool": "parselmouth.to_formant_burg",
+    "signal": "8kHz preprocessed waveform",
+    "max_number_of_formants": 5,
+    "maximum_formant_hz": 3800.0,
+    "note": "F3 lower-confidence: maximum_formant set just under the 4kHz Nyquist"
+  }
+}

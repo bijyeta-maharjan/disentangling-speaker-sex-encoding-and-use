@@ -1,0 +1,974 @@
+[
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.1594163251897876,
+      "conv2": 0.20231294508996472,
+      "conv3": 0.2664151324462604,
+      "conv4": 0.31621749608093347,
+      "conv5": 0.3355107562177765,
+      "penultimate": 0.2628818868751183
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.16666582126196577,
+      "conv2": 0.22494762382590552,
+      "conv3": 0.2951895567455646,
+      "conv4": 0.3694455355696469,
+      "conv5": 0.390947131732783,
+      "penultimate": 0.3067486102382608
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.17410566588882076,
+      "conv2": 0.2124485997392933,
+      "conv3": 0.27118421431612383,
+      "conv4": 0.32301132629674423,
+      "conv5": 0.3548887444781334,
+      "penultimate": 0.27864338750200884
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.19443592737401014,
+      "conv2": 0.23173579307226191,
+      "conv3": 0.28901390697375257,
+      "conv4": 0.31850267624937917,
+      "conv5": 0.33384694089227585,
+      "penultimate": 0.2613578645308384
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.05055758164327235,
+      "conv2": 0.09464581592403092,
+      "conv3": 0.12298054532833218,
+      "conv4": 0.1753256227184314,
+      "conv5": 0.1907467532347284,
+      "penultimate": 0.14277651366653796
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.07211828668590523,
+      "conv2": 0.1341281218376998,
+      "conv3": 0.1574846708986189,
+      "conv4": 0.18637016577821558,
+      "conv5": 0.1806875225244394,
+      "penultimate": 0.14832038647304768
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.08062224646082529,
+      "conv2": 0.14858400909835737,
+      "conv3": 0.16458601634812894,
+      "conv4": 0.19570567261267569,
+      "conv5": 0.19473845256153308,
+      "penultimate": 0.14571848213009403
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.08906466163998547,
+      "conv2": 0.15580325968739217,
+      "conv3": 0.17758871364855297,
+      "conv4": 0.21427258444056815,
+      "conv5": 0.19729864472053402,
+      "penultimate": 0.14628924882256258
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.1683275292059571,
+      "conv2": 0.23109683988555849,
+      "conv3": 0.26683797055475567,
+      "conv4": 0.32703595791744733,
+      "conv5": 0.40024309321549,
+      "penultimate": 0.34525116164874675
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.17103806515098582,
+      "conv2": 0.2267492020083905,
+      "conv3": 0.26763822805314524,
+      "conv4": 0.35398738014036857,
+      "conv5": 0.4292455955250695,
+      "penultimate": 0.3603173772283149
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.18288988468101935,
+      "conv2": 0.23447654359194683,
+      "conv3": 0.2625934040748615,
+      "conv4": 0.3132495344223702,
+      "conv5": 0.38815870503733635,
+      "penultimate": 0.333139930623866
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.19788732997354275,
+      "conv2": 0.24177779057430498,
+      "conv3": 0.2799647590828821,
+      "conv4": 0.3071186130507823,
+      "conv5": 0.35193134756545486,
+      "penultimate": 0.297179458392491
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.05778731912013932,
+      "conv2": 0.09424026494026773,
+      "conv3": 0.1227046253919049,
+      "conv4": 0.1803731530021863,
+      "conv5": 0.2239504185932718,
+      "penultimate": 0.21736699660870792
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.07773882208051339,
+      "conv2": 0.13471656158928708,
+      "conv3": 0.1607979574122557,
+      "conv4": 0.20229077373303442,
+      "conv5": 0.23875199078614415,
+      "penultimate": 0.2112051544330208
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.09649076883354003,
+      "conv2": 0.15175147378437742,
+      "conv3": 0.16032744443692537,
+      "conv4": 0.17914817485891407,
+      "conv5": 0.20207468203664766,
+      "penultimate": 0.17520341804599573
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.09746820009307543,
+      "conv2": 0.15833552331587922,
+      "conv3": 0.16864679880971734,
+      "conv4": 0.19749656564762647,
+      "conv5": 0.22720899433482825,
+      "penultimate": 0.20549967599174607
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.17632495011682933,
+      "conv2": 0.2295564697703727,
+      "conv3": 0.2581273910957527,
+      "conv4": 0.29216755946420403,
+      "conv5": 0.303566075058997,
+      "penultimate": 0.2391438628247042
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.18851815142688017,
+      "conv2": 0.24043167818740846,
+      "conv3": 0.2711189294013573,
+      "conv4": 0.32608662358524926,
+      "conv5": 0.3415690525919828,
+      "penultimate": 0.26035778381828123
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.19423365215936145,
+      "conv2": 0.23537722229647884,
+      "conv3": 0.258752212079017,
+      "conv4": 0.2781774810308846,
+      "conv5": 0.2909646218986665,
+      "penultimate": 0.22243882417482214
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.20888643331141382,
+      "conv2": 0.25710630688213737,
+      "conv3": 0.27972272077705784,
+      "conv4": 0.29605637185134376,
+      "conv5": 0.2898727443677868,
+      "penultimate": 0.21846900204977837
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.0723577260511642,
+      "conv2": 0.11332932038553942,
+      "conv3": 0.1340163143914423,
+      "conv4": 0.1781337097293161,
+      "conv5": 0.17187955167890956,
+      "penultimate": 0.15095954171874967
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "conv1": 0.08929994243112156,
+      "conv2": 0.17066058905485001,
+      "conv3": 0.21742296677279271,
+      "conv4": 0.2570996260307574,
+      "conv5": 0.23479153478874246,
+      "penultimate": 0.17558356037116382
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.10180047761235313,
+      "conv2": 0.17272439678403792,
+      "conv3": 0.21691121612095196,
+      "conv4": 0.2562906910817655,
+      "conv5": 0.22080779136397036,
+      "penultimate": 0.15597191405763375
+    }
+  },
+  {
+    "arch": "cnn1d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "conv1": 0.10710692963950931,
+      "conv2": 0.18359137231922387,
+      "conv3": 0.23604900911305887,
+      "conv4": 0.2765179661105518,
+      "conv5": 0.26223826625470836,
+      "penultimate": 0.19875360914871176
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.09248005248236098,
+      "block2": 0.18041460638718748,
+      "block3": 0.22831042426454076,
+      "block4": 0.2951852390812799,
+      "penultimate": 0.22780416819226626
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.09180546774416469,
+      "block2": 0.17389865049399653,
+      "block3": 0.22764522705350143,
+      "block4": 0.2916127143851394,
+      "penultimate": 0.22643273048996768
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.09020838490795499,
+      "block2": 0.18531341623540076,
+      "block3": 0.24724223800973658,
+      "block4": 0.32497377179482245,
+      "penultimate": 0.24295265396203305
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.09229097002330168,
+      "block2": 0.18404093335016844,
+      "block3": 0.23902493376496123,
+      "block4": 0.3132353465224975,
+      "penultimate": 0.2457078468344517
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.08884161817963918,
+      "block2": 0.1557590225217788,
+      "block3": 0.21095153848926135,
+      "block4": 0.30347009939417896,
+      "penultimate": 0.2180570852616261
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.077848273964319,
+      "block2": 0.15295174928503594,
+      "block3": 0.1826491427989357,
+      "block4": 0.2602724973367319,
+      "penultimate": 0.22849068291921773
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.07779676433193215,
+      "block2": 0.1458350319838946,
+      "block3": 0.18762789892873621,
+      "block4": 0.26225438646466753,
+      "penultimate": 0.21530871271288513
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.07897011216465326,
+      "block2": 0.15267637754170602,
+      "block3": 0.19852130489947437,
+      "block4": 0.2933905060881435,
+      "penultimate": 0.25546837851849946
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.10072770822779498,
+      "block2": 0.17185808599122476,
+      "block3": 0.24263994199506242,
+      "block4": 0.3784954550110549,
+      "penultimate": 0.3055739446978279
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.08429596678533113,
+      "block2": 0.16738479051051014,
+      "block3": 0.2479163995782791,
+      "block4": 0.3718585395536316,
+      "penultimate": 0.29189621936805626
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.09748081225859037,
+      "block2": 0.1677625569989439,
+      "block3": 0.23654964130844822,
+      "block4": 0.3519204875683419,
+      "penultimate": 0.2781994818850373
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.0963488995530485,
+      "block2": 0.17637257396388345,
+      "block3": 0.2457610512898276,
+      "block4": 0.37068573693977286,
+      "penultimate": 0.28537816552150597
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.08564106088074179,
+      "block2": 0.159535852376555,
+      "block3": 0.19944935833095193,
+      "block4": 0.33089923852383024,
+      "penultimate": 0.2608529558821744
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.06610555699715982,
+      "block2": 0.16617604877901235,
+      "block3": 0.22414225937050491,
+      "block4": 0.332482437572892,
+      "penultimate": 0.2616481572078675
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.0663733618903513,
+      "block2": 0.16033438971287522,
+      "block3": 0.21863680386295886,
+      "block4": 0.3256099323587483,
+      "penultimate": 0.2595668706880579
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.052892488537118414,
+      "block2": 0.15299335236222053,
+      "block3": 0.21247777523266148,
+      "block4": 0.3281115482028957,
+      "penultimate": 0.26413189676339266
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "female",
+    "eval_speakers": [
+      "12",
+      "52",
+      "56"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.06855911141771522,
+      "block2": 0.14127067724426498,
+      "block3": 0.19443205682004625,
+      "block4": 0.2740333782731237,
+      "penultimate": 0.19051266231159406
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "female",
+    "eval_speakers": [
+      "36",
+      "58",
+      "60"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.06231253582648891,
+      "block2": 0.14708034316504628,
+      "block3": 0.20034577316103655,
+      "block4": 0.3040601425497355,
+      "penultimate": 0.1994336704223069
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "female",
+    "eval_speakers": [
+      "28",
+      "43",
+      "47"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.06759082004483748,
+      "block2": 0.14620346796464134,
+      "block3": 0.19677594554074102,
+      "block4": 0.2875875192157817,
+      "penultimate": 0.19742930454748164
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "female",
+    "eval_speakers": [
+      "26",
+      "57",
+      "59"
+    ],
+    "n_finetune": 9,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.07065867569908456,
+      "block2": 0.14736638335682392,
+      "block3": 0.19907291957637666,
+      "block4": 0.26565038636934635,
+      "penultimate": 0.1662561168230843
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 0,
+    "condition": "male_control",
+    "eval_speakers": [
+      "06",
+      "39",
+      "42"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.06254166289964981,
+      "block2": 0.11595098026367281,
+      "block3": 0.14481214791098074,
+      "block4": 0.1875521679282956,
+      "penultimate": 0.13783519142324824
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 1,
+    "condition": "male_control",
+    "eval_speakers": [
+      "27",
+      "32",
+      "51"
+    ],
+    "n_finetune": 7,
+    "n_eval": 3,
+    "relative_change_by_layer": {
+      "block1": 0.05607073620332719,
+      "block2": 0.1435610122709538,
+      "block3": 0.19360867228873874,
+      "block4": 0.26329219252131203,
+      "penultimate": 0.17183540292842778
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 2,
+    "condition": "male_control",
+    "eval_speakers": [
+      "34",
+      "55"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.053591112693718836,
+      "block2": 0.1363653012302752,
+      "block3": 0.17971799110232728,
+      "block4": 0.24245163934896505,
+      "penultimate": 0.1525176402170017
+    }
+  },
+  {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "fold": 3,
+    "condition": "male_control",
+    "eval_speakers": [
+      "22",
+      "53"
+    ],
+    "n_finetune": 8,
+    "n_eval": 2,
+    "relative_change_by_layer": {
+      "block1": 0.04845332096694165,
+      "block2": 0.1365985847252672,
+      "block3": 0.18199090569217208,
+      "block4": 0.2440732548990392,
+      "penultimate": 0.15068619472333758
+    }
+  }
+]

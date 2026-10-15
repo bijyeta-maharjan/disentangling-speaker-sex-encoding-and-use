@@ -1,0 +1,3 @@
+arch,n_total,n_f0_valid,n_formant_valid,n_intersection,f0_only_drop,formant_only_drop,both_invalid_drop,pct_dropped,flagged_high_drop
+cnn1d,6000,5012,6000,5012,988,0,0,0.1647,False
+spec_cnn2d,6000,5012,6000,5012,988,0,0,0.1647,False

@@ -1,0 +1,50 @@
+{
+  "git_sha": "918c797",
+  "analysis": "layerwise_localization",
+  "depends_on": "results/female_finetune/recovery_run_meta.json (both archs: LARGER_THAN_MALE_CONTROL_CONFOUNDED -> proceed to localization)",
+  "epochs_locked": 2,
+  "lr": 0.0001,
+  "batch_size": 128,
+  "weight_decay": 0.0,
+  "optimizer": "Adam",
+  "archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_folds_female": 4,
+  "n_folds_male_control": 4,
+  "n_runs_expected": 48,
+  "n_runs_found": 48,
+  "metric": "relative_change = sqrt(sum ||act_after - act_before||^2) / sqrt(sum ||act_before||^2), streamed per batch over the fold's eval speakers, per intermediate layer + penultimate, in depth order, normalized to [0, 1].",
+  "pinned_checkpoints_manifest": "results/female_finetune/pinned_checkpoints.json",
+  "pre_registered_expectation": "Pre-registered (per the recovery gate, both archs verdict LARGER_THAN_MALE_CONTROL_CONFOUNDED): the layer-change analysis asks whether fine-tuning retunes LOW-level layers (early conv/spectrogram blocks -- acoustic/frequency-level retuning) or HIGH-level layers (late blocks / penultimate -- decision-level retuning). This question is answerable from the female profile ALONE (before-vs-after the female fine-tune, same eval speech) and does not require the male control to be valid. If relative change is flat or higher early -> low-level acoustic retuning; if it rises monotonically with depth -> high-level decision-boundary retuning. The female-minus-male comparison is computed for completeness but is pre-registered as NOT informative about female-specificity (see DESCRIPTIVE_ONLY_CAVEAT).",
+  "descriptive_only_caveat": "The female layer-change profile is reported as DESCRIPTIVE localization -- what the model changed, at each depth, to read women it was not trained on -- explicitly NOT as a 'female-specific' mechanism claim. The male-control profile is a confounded secondary reference (weak novel-vs-familiar exposure asymmetry + ceiling/no-headroom, see recovery_run_meta.json male_control_asymmetry): the 10 male-control speakers had zero gradient updates but weak checkpoint-selection exposure, and the male-only model is already near-ceiling on them pre-fine-tune, leaving far less room to move. Because of this, the female-minus-male double-difference by layer is NOT interpretable as specificity in EITHER direction on this dataset: a difference could be the confounds, not sex; agreement could be masked by the male pool's ceiling, not genuine convergence. AudioMNIST has no clean alternative control (only 12 female speakers total, all already used) -- female-vs-generic specificity is structurally NOT RESOLVABLE on this data, stated explicitly rather than smoothed over.",
+  "male_control_is_confounded": true,
+  "female_vs_generic_specificity_resolvable_on_this_data": false,
+  "specificity_not_resolvable_reason": "Structural: no novel (never-before-seen) male speakers are available to fine-tune on (all males are already in the male-only training pool), and the male-control pool's pre-fine-tune accuracy is already near ceiling, leaving no headroom -- there is no clean alternative control on AudioMNIST (only 12 female speakers total, all used).",
+  "verdicts": {
+    "cnn1d": {
+      "shape": "MONOTONIC_INCREASE_WITH_DEPTH",
+      "peak_layer": "conv5",
+      "peak_normalized_depth": 0.8,
+      "peak_mean_relative_change": 0.3508954007151461,
+      "early_half_mean": 0.22825847711847577,
+      "late_half_mean": 0.31715918094856493,
+      "interpretation": "Relative activation change from fine-tuning is largest at or increasing toward the PENULTIMATE / late layers -- consistent with high-level, decision-level retuning rather than low-level acoustic re-encoding."
+    },
+    "spec_cnn2d": {
+      "shape": "MONOTONIC_INCREASE_WITH_DEPTH",
+      "peak_layer": "block4",
+      "peak_normalized_depth": 0.75,
+      "peak_mean_relative_change": 0.3191082264387107,
+      "early_half_mean": 0.1251552454430319,
+      "late_half_mean": 0.2609053398522972,
+      "interpretation": "Relative activation change from fine-tuning is largest at or increasing toward the PENULTIMATE / late layers -- consistent with high-level, decision-level retuning rather than low-level acoustic re-encoding."
+    }
+  }
+}

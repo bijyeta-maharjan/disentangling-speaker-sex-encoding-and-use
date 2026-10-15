@@ -1,0 +1,13 @@
+{
+  "git_sha": "ab0b074",
+  "created": "20260618-151011",
+  "seed": 42,
+  "checkpoint": "experiments/speaker_independent_seed42_39a40f6_20260617-220415/best.pt",
+  "n_rows": 88,
+  "attributes": [
+    "sex",
+    "accent",
+    "age_bin",
+    "speaker_id"
+  ]
+}

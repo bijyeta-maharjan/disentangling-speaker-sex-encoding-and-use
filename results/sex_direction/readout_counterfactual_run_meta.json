@@ -1,0 +1,36 @@
+{
+  "git_sha": "57f4492",
+  "primary_seed": 42,
+  "stability_seeds": [
+    43,
+    44
+  ],
+  "flag": "n=3 female test speakers \u2014 within-sample, not a population claim",
+  "speaker_count_note": "AudioMNIST is 48 male / 12 female speakers dataset-wide; this analysis, like the rest of the sex-direction analyses, follows the speaker-disjoint SI test fold (n=9 male / n=3 female, 4500/1500 utterances). Note this test barely depends on female n -- see module docstring.",
+  "excluded_note": "resnet1d and crnn_gru EXCLUDED from this analysis: their whitened sex direction sat INSIDE the random-re-split null in the re-split control, so there is no validated direction whose readout sensitivity would be meaningful. Stated explicitly.",
+  "bound_note": "This test bounds ONLY the linear readout's sensitivity to the penultimate sex direction. It does NOT establish whether earlier layers route sex-correlated features upstream of digit features -- that is a distinct, unaddressed question.",
+  "head_method_note": "Both classifier heads are 3-layer MLPs (Linear-ReLU-Dropout x2 then Linear), not a single linear map from penultimate to logits, so 'W' is operationalized as the Jacobian d(logits)/d(penultimate) of the REAL trained head, averaged over the SI test fold (J_mean, 10xd) -- s_k = |J_mean_k . u_hat|, the direct analog of the linear-readout formula.",
+  "scope_archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "excluded_archs": [
+    "resnet1d",
+    "crnn_gru"
+  ],
+  "delta_multiples": [
+    -3,
+    -2,
+    -1.5,
+    -1,
+    -0.5,
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    3
+  ],
+  "n_null": 1000,
+  "null_rng_seed": 0
+}

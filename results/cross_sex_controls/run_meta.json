@@ -1,0 +1,64 @@
+{
+  "created": "20260903-220425",
+  "git_sha": "5b6bc51",
+  "archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "same_size_control": {
+    "pre_registered_expectation": "If the cross-sex gap is sex-specific, male->male generalization drop will be substantially smaller than the ~5-point cross-sex gap. If male->male drops comparably, the cross-sex gap is mostly sample-size/distribution-shift, not sex -- in which case this control OVERTURNS the sex interpretation and the representational 'not used' story stands cleaner. This control CAN falsify the behavioral sex claim; written before looking.",
+    "decision_rule": "male gap << cross-sex gap -> sex-specific, behavioral sex claim survives its strongest control. male gap ~= cross-sex gap -> gap is sample-size/shift, not sex; behavioral sex claim overturned, reported loudly. Operationalized here as: |male_gap| < 0.5*|female_gap| -> survives; |male_gap| >= 0.8*|female_gap| -> overturned; else ambiguous.",
+    "split_file": "splits/male_subset_control_male_train_male_test.json",
+    "held_out_male_speakers": [
+      "01",
+      "03",
+      "16",
+      "17",
+      "18",
+      "23",
+      "38",
+      "44",
+      "55"
+    ],
+    "confound_note": "None needed: the 9 held-out males are the SI regime's OWN test fold, genuinely held out from BOTH the male-subset model and the SI baseline by construction.",
+    "verdicts": {
+      "cnn1d": {
+        "verdict": "SEX_SPECIFIC_SURVIVES",
+        "text": "Male->male gap is much smaller than the cross-sex female gap (male gap=-0.0290 vs female gap=-0.0787) -- the cross-sex gap is sex-specific; the behavioral sex claim SURVIVES its strongest control."
+      },
+      "spec_cnn2d": {
+        "verdict": "SEX_SPECIFIC_SURVIVES",
+        "text": "Male->male gap is much smaller than the cross-sex female gap (male gap=-0.0205 vs female gap=-0.0498) -- the cross-sex gap is sex-specific; the behavioral sex claim SURVIVES its strongest control."
+      }
+    }
+  },
+  "leave_one_out": {
+    "pre_registered_expectation": "If the effect is real, the gap stays negative across (most) rotations; if it flips sign / swings wildly, it is speaker-driven and fragile. Written before looking.",
+    "decision_rule": "gaps negative across all rotations -> direction-robust, not a 3-speaker artifact. gaps flip sign / swing -> speaker-driven, fragile, reported as such. NOT pooled into one CI -- reported per rotation, read qualitatively.",
+    "scope_decision": "Leave-one-out WITHIN the existing 3 genuinely-held-out female speakers (36,43,47) -- NOT a full 5-fold rotation requiring retrained baselines (that would need 24 new training runs; declined in favour of this cheaper, no-retrain design that reuses every checkpoint already on disk). This means the leave-one-out check tests robustness to WHICH of the fixed 3 women drives the signal, not generalization to a genuinely different held-out female group.",
+    "n_flag": "n=3 female test speakers -- within-sample, not a population claim",
+    "verdicts": {
+      "cnn1d": {
+        "verdict": "DIRECTION_ROBUST_NEGATIVE",
+        "text": "Gap stays negative across all rotations (full-3 + all 3 leave-one-out) -- direction-robust, not a single-speaker artifact, though still n<=3 and NOT better-powered than the original comparison."
+      },
+      "spec_cnn2d": {
+        "verdict": "DIRECTION_ROBUST_NEGATIVE",
+        "text": "Gap stays negative across all rotations (full-3 + all 3 leave-one-out) -- direction-robust, not a single-speaker artifact, though still n<=3 and NOT better-powered than the original comparison."
+      }
+    }
+  },
+  "out_of_scope_confirmed_not_run": [
+    "train-female -> test-male",
+    "balanced 50/50 dataset",
+    "perturbation/CRP",
+    "new architectures beyond cnn1d/spec_cnn2d",
+    "hyperparameter tuning",
+    "pooling leave-one-out rotations into one CI"
+  ]
+}

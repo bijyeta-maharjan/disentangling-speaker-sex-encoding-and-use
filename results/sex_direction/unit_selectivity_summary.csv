@@ -1,0 +1,5 @@
+arch,n_units,n_female_speakers,n_male_speakers,n_female_utt,n_male_utt,participation_ratio,pr_fraction,distribution,top5_unit_index,top5_cohens_d
+cnn1d,256,3,9,1500,4500,103.94,0.406,broad smear,"[41, 240, 66, 3, 147]","[0.6, 0.5617, 0.5567, 0.5425, 0.5418]"
+resnet1d,256,3,9,1500,4500,101.91,0.3981,broad smear,"[75, 210, 8, 96, 50]","[0.6528, 0.6446, 0.6345, 0.5765, 0.5737]"
+crnn_gru,128,3,9,1500,4500,27.58,0.2155,moderate,"[48, 10, 66, 49, 70]","[-0.1676, -0.1546, 0.1526, -0.1482, -0.1319]"
+spec_cnn2d,128,3,9,1500,4500,48.31,0.3774,broad smear,"[123, 32, 21, 57, 43]","[0.5515, 0.484, 0.4678, 0.3945, 0.3732]"

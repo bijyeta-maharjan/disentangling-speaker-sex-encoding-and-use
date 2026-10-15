@@ -1,0 +1,9 @@
+{
+  "regime": "speaker_dependent",
+  "seed": 42,
+  "git_sha": "39a40f6",
+  "best_epoch": 6,
+  "best_val_acc": 0.9878333333333333,
+  "run_dir": "experiments/speaker_dependent_seed42_39a40f6_20260617-222632",
+  "checkpoint": "experiments/speaker_dependent_seed42_39a40f6_20260617-222632/best.pt"
+}

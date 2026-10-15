@@ -1,0 +1,30 @@
+{
+  "seed": 42,
+  "device": "cuda",
+  "steps": 20,
+  "n_bands": 16,
+  "archs": [
+    "cnn1d",
+    "resnet1d"
+  ],
+  "per_arch": {
+    "cnn1d": {
+      "auc_morf": 0.15332513377070428,
+      "auc_random": 0.4053396850824356,
+      "auc_lerf": 0.5390829212963582,
+      "faithful": true,
+      "n_faith": 1000
+    },
+    "resnet1d": {
+      "auc_morf": 0.16254971288144587,
+      "auc_random": 0.3892693594098091,
+      "auc_lerf": 0.550647445395589,
+      "faithful": true,
+      "n_faith": 1000
+    }
+  },
+  "checkpoints": {
+    "cnn1d": "experiments/speaker_independent_seed42_f2f2b59_20260623-193637/best.pt",
+    "resnet1d": "experiments/speaker_independent_seed42_f2f2b59_20260623-195922/best.pt"
+  }
+}

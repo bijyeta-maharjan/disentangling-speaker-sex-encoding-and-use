@@ -1,0 +1,9 @@
+attribute,arch,mean,min,max,verdict
+sex,cnn1d,-0.05594666666666667,-0.07867,-0.0365,inherited
+sex,resnet1d,-0.02878,-0.03617,-0.017,inherited
+sex,crnn_gru,-0.006056666666666666,-0.00917,-0.00034,inherited
+sex,spec_cnn2d,-0.025779999999999997,-0.02817,-0.02333,inherited
+speaker_id,cnn1d,0.09126000000000001,0.07311,0.10278,induced
+speaker_id,resnet1d,0.07647999999999999,0.06856,0.08366,induced
+speaker_id,crnn_gru,0.3775166666666667,0.34644,0.39533,induced
+speaker_id,spec_cnn2d,0.13340666666666667,0.10244,0.16122,induced

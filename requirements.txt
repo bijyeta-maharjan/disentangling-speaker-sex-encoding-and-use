@@ -1,0 +1,19 @@
+# Versions installed in the laptop environment used to package this release
+# (Python 3.12.9, pip freeze, trimmed to the packages the code imports).
+# The original runs did not record exact package versions; see README.
+numpy==1.26.4
+pandas==2.2.2
+pyarrow==17.0.0
+scipy==1.17.1
+scikit-learn==1.9.0
+torch==2.14.0
+librosa==0.10.2.post1
+soundfile==0.12.1
+soxr==1.1.0
+matplotlib==3.9.2
+seaborn==0.13.2
+tqdm==4.66.5
+PyYAML==6.0.3
+praat-parselmouth==0.4.7
+zennit==1.0.0
+pytest==8.3.3

@@ -1,0 +1,120 @@
+# Day 3 config — representation probing for demographic decodability.
+# Reuses the Day-2 cache, splits and SI checkpoint. The scientific question:
+# does a digit classifier encode speaker demographics (sex/accent/age/identity)
+# in its hidden representations even though it was never trained to?
+#
+# Method disciplines this config encodes:
+#   - GAP per block (feature length = channel count), never flatten.
+#   - Speaker-disjoint probe splits for generalizable attrs (reuse SI partition).
+#   - Speaker-utterance split ONLY for the speaker-id re-identifiability probe.
+#   - Two controls extracted in the SAME pipeline: untrained net + raw input.
+
+seed: 42
+
+paths:
+  raw_root: data/raw/AudioMNIST
+  processed_dir: data/processed
+  splits_dir: splits
+  experiments_dir: experiments
+  figs_dir: figures/output
+  activations_dir: data/processed/activations   # cached GAP features + label table
+  runs_dir: experiments/day3_probing            # probe result tables / run folder
+
+# Reuse the Day-2 waveform cache exactly (same preprocessing => aligned rows).
+preprocess:
+  target_sr: 8000
+  target_length: 8192
+  cache_name: waveforms_8k_8192
+
+# Subject model: the speaker_independent best-on-val checkpoint (PRIMARY).
+# The speaker_dependent model is a Day-2 diagnostic only and is NOT probed here.
+# The path below is the original run directory; after retraining, point it at your
+# own experiments/speaker_independent_seed42_<sha>_<timestamp>/best.pt.
+checkpoint:
+  regime: speaker_independent
+  path: experiments/speaker_independent_seed42_39a40f6_20260617-220415/best.pt
+
+# Model architecture is read from the checkpoint's stored config; these mirror it
+# and are used to build the UNTRAINED control with identical shape + seed.
+model:
+  in_channels: 1
+  n_classes: 10
+  conv_channels: [32, 64, 128, 128, 256]
+  kernel_sizes: [9, 5, 3, 3, 3]
+  pool_size: 4
+  fc_dims: [128, 64]
+  dropout: 0.3
+
+block_names: [conv1, conv2, conv3, conv4, conv5]
+
+extract:
+  batch_size: 256          # eval/no_grad forward; larger than train batch is fine
+  num_workers: 0           # macOS: avoid re-pickling the memmap
+  device: cpu
+  # Raw-input baseline: a compact log-mel spectrogram, GAP over time -> [N, n_mels].
+  # This is the "before any network" reference probed for each attribute.
+  raw_baseline:
+    kind: logmel
+    n_fft: 256
+    hop_length: 128
+    n_mels: 64
+
+# Which split regime defines the speaker-disjoint probe partition.
+# probe-TRAIN = SI train+val speakers, probe-TEST = SI test speakers (disjoint).
+probe_split_regime: speaker_independent
+
+attributes:
+  # GENERALIZABLE attributes -> speaker-disjoint split (discipline C).
+  - name: sex
+    kind: generalizable
+    type: binary                 # male vs female
+  - name: accent
+    kind: generalizable
+    type: binary                 # German vs non-German (avoids singleton accent classes)
+  - name: age_bin
+    kind: generalizable
+    type: binary                 # median split (<=27 vs >27); speaker 45's bogus age=1234 dropped
+  # RE-IDENTIFIABILITY -> per-speaker-utterance split (the labeled exception).
+  - name: speaker_id
+    kind: identity
+    type: multiclass             # 60 speakers; chance = 1/60
+
+age:
+  median_threshold: 27           # from Day-1 EDA (median age, bogus 1234 excluded)
+  drop_speakers: ["45"]          # speaker 45 age=1234 is corrupt -> excluded from age probe
+
+# Per-speaker-utterance split used ONLY for the speaker-id probe.
+identity_split:
+  test_size: 0.3
+  stratify: speaker              # hold out 30% of EACH speaker's utterances
+
+probe:
+  standardize: true              # StandardScaler on probe-train, applied to test
+  linear:
+    type: logistic
+    C: 1.0
+    max_iter: 2000
+  mlp:
+    hidden_layer_sizes: [128]
+    max_iter: 300
+    alpha: 0.0001
+  control_task:
+    enabled: true                # random-label control => selectivity = real_acc - random_acc
+    # random labels are assigned at the SPEAKER level for generalizable attrs
+    # (per-utterance for speaker-id), so the control measures "can the probe fit
+    # arbitrary labels" rather than leaking through individual identity.
+  bootstrap:
+    n_boot: 1000
+    ci: 0.95
+
+viz:
+  embedding_blocks: [conv3, conv5]   # one mid block + the deepest block
+  color_by: [digit, sex, speaker_id]
+  tsne:
+    perplexity: 30
+    max_iter: 1000
+    subsample: 4000                  # t-SNE is O(N^2)-ish; subsample for tractability
+  pca_components: 50                 # PCA pre-reduction before t-SNE; report variance explained
+  cluster_mi:
+    enabled: true
+    n_clusters: 10                   # KMeans on conv5; MI vs {digit, sex, speaker_id}

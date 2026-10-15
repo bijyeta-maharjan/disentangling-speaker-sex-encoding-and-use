@@ -1,0 +1,34 @@
+{
+  "git_sha": "876bac5",
+  "arch": "cnn1d",
+  "arch_scope_note": "cnn1d only -- spec_cnn2d structurally out of scope for the recovered original DFT-LRP script (BatchNorm1d/Conv1d canonization + raw-waveform rfft); never run on spec_cnn2d in the original work either.",
+  "scope_note": "DESCRIPTIVE ONLY: bands that changed when the model adapted to women. NOT a female-specific signature claim.",
+  "ft_epochs": 2,
+  "ft_lr": 0.0001,
+  "ft_batch_size": 128,
+  "ft_weight_decay": 0.0,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_bands": 16,
+  "steps": 20,
+  "device": "cuda",
+  "male_control_included": true,
+  "male_control_note": "context only, confounded (weak exposure + ceiling) -- see female_finetune.py male_control_asymmetry note. Never a female-specific claim.",
+  "pitch_band_hz": [
+    0,
+    250
+  ],
+  "formant_band_hz": [
+    250,
+    750
+  ]
+}

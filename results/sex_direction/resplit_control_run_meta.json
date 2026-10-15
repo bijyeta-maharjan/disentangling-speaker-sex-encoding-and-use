@@ -1,0 +1,94 @@
+{
+  "git_sha": "57f4492",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+  "three_women_caveat": "This control removes the low-rank / generic-12-person-contrast confound ONLY. It does NOT remove the three-women confound: a positive result means the whitened direction is reproducible in a way an arbitrary split of THESE 12 people is not -- it does not mean the direction generalizes beyond these three women.",
+  "n_resplits": 219,
+  "design_note": "enumerated all C(12,3)-1=219 non-sex 3-vs-9 partitions (exact null) rather than a 500-draw Monte Carlo of the same 220-point discrete space",
+  "female_test_speakers": [
+    "36",
+    "43",
+    "47"
+  ],
+  "male_test_speakers": [
+    "01",
+    "03",
+    "16",
+    "17",
+    "18",
+    "23",
+    "38",
+    "44",
+    "55"
+  ],
+  "rows": [
+    {
+      "arch": "cnn1d",
+      "sex_whitened_cosine": 0.6764,
+      "random_p50": 0.5035,
+      "random_p95": 0.5769,
+      "sex_percentile": 100.0,
+      "n_resplits": 219,
+      "alignment_quality_resid": 0.3539,
+      "alignment_quality_cka": 0.9116,
+      "raw_cav_cosine_reference": 0.9457,
+      "verdict": "SEPARABLE (sex-specific)",
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+      "three_women_caveat": "This control removes the low-rank / generic-12-person-contrast confound ONLY. It does NOT remove the three-women confound: a positive result means the whitened direction is reproducible in a way an arbitrary split of THESE 12 people is not -- it does not mean the direction generalizes beyond these three women."
+    },
+    {
+      "arch": "resnet1d",
+      "sex_whitened_cosine": 0.2167,
+      "random_p50": 0.1611,
+      "random_p95": 0.3632,
+      "sex_percentile": 56.16,
+      "n_resplits": 219,
+      "alignment_quality_resid": 0.3585,
+      "alignment_quality_cka": 0.9323,
+      "raw_cav_cosine_reference": 0.8768,
+      "verdict": "NOT SEPARABLE (inside generic-contrast null)",
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+      "three_women_caveat": "This control removes the low-rank / generic-12-person-contrast confound ONLY. It does NOT remove the three-women confound: a positive result means the whitened direction is reproducible in a way an arbitrary split of THESE 12 people is not -- it does not mean the direction generalizes beyond these three women."
+    },
+    {
+      "arch": "crnn_gru",
+      "sex_whitened_cosine": 0.4084,
+      "random_p50": 0.4062,
+      "random_p95": 0.4999,
+      "sex_percentile": 51.6,
+      "n_resplits": 219,
+      "alignment_quality_resid": 0.3613,
+      "alignment_quality_cka": 0.8602,
+      "raw_cav_cosine_reference": 0.7201,
+      "verdict": "NOT SEPARABLE (inside generic-contrast null)",
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+      "three_women_caveat": "This control removes the low-rank / generic-12-person-contrast confound ONLY. It does NOT remove the three-women confound: a positive result means the whitened direction is reproducible in a way an arbitrary split of THESE 12 people is not -- it does not mean the direction generalizes beyond these three women."
+    },
+    {
+      "arch": "spec_cnn2d",
+      "sex_whitened_cosine": 0.7056,
+      "random_p50": 0.5236,
+      "random_p95": 0.6105,
+      "sex_percentile": 100.0,
+      "n_resplits": 219,
+      "alignment_quality_resid": 0.3976,
+      "alignment_quality_cka": 0.907,
+      "raw_cav_cosine_reference": 0.9098,
+      "verdict": "SEPARABLE (sex-specific)",
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+      "three_women_caveat": "This control removes the low-rank / generic-12-person-contrast confound ONLY. It does NOT remove the three-women confound: a positive result means the whitened direction is reproducible in a way an arbitrary split of THESE 12 people is not -- it does not mean the direction generalizes beyond these three women."
+    }
+  ]
+}

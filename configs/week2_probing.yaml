@@ -1,0 +1,139 @@
+# Week-2 probing config — cross-architecture demographic decodability.
+# Reuses the Day-3 probe harness + disciplines verbatim. Question: is Week-1's
+# "demographic info is INHERITED (trained ≈ untrained), not induced by the digit
+# task" property of the 1D-CNN, or architecture-invariant?
+#
+# Scope: SEED 42 SI checkpoints (seeds 43/44 used per-seed configs, not included --
+# see README); attributes SEX + SPEAKER-IDENTITY only (accent/age skipped —
+# underpowered nulls).
+
+seed: 42
+
+paths:
+  raw_root: data/raw/AudioMNIST
+  processed_dir: data/processed
+  splits_dir: splits
+  experiments_dir: experiments
+  figs_dir: figures/output
+  activations_dir: data/processed/activations_week2   # per-arch penultimate + intermediates
+  runs_dir: experiments/week2_probing                 # probe result tables / run folder
+
+# Authoritative arch -> seed-42 SI checkpoint mapping (training sweep log).
+sweep_results: experiments/week2_sweep/results.jsonl
+
+# Reuse the Day-2 waveform cache exactly (aligned rows). Spectrogram arch uses the
+# row-for-row-aligned mel cache (same order => same labels).
+preprocess:
+  target_sr: 8000
+  target_length: 8192
+  cache_name: waveforms_8k_8192
+
+spectrogram:
+  n_mels: 64
+  n_fft: 256
+  hop_length: 128
+  fmin: 0
+  fmax: 4000
+  power: 2.0
+  log: true
+  cache_name: melspec_8k_64mel
+
+# The 4 core architectures (dict keyed by arch name, so resolve_arch_cfg can build
+# the matching untrained net). Each is probed: trained seed-42 SI + untrained control.
+# Mirrors configs/week2_architectures.yaml exactly.
+architectures:
+  cnn1d:
+    arch: cnn1d
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128, 128, 256]
+    kernel_sizes: [9, 5, 3, 3, 3]
+    pool_size: 4
+    fc_dims: [128, 64]
+    dropout: 0.3
+  resnet1d:
+    arch: resnet1d
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128, 128, 256]
+    kernel_sizes: [9, 5, 3, 3, 3]
+    pool_size: 4
+    fc_dims: [128, 64]
+    dropout: 0.3
+  crnn_gru:
+    arch: crnn_gru
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128]
+    kernel_sizes: [9, 5, 3]
+    pool_size: 4
+    gru_hidden: 128
+    gru_layers: 2
+    bidirectional: false
+    dropout: 0.3
+  spec_cnn2d:
+    arch: spec_cnn2d
+    input: spectrogram
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [24, 48, 96, 128]
+    kernel_size: 3
+    pool_size: 2
+    fc_dims: [128, 64]
+    dropout: 0.3
+
+extract:
+  batch_size: 256
+  num_workers: 0
+  device: cpu
+
+# Speaker-disjoint probe partition (reuse SI partition): probe-train = SI train+val
+# speakers, probe-test = SI test speakers.
+probe_split_regime: speaker_independent
+
+# Attributes probed.
+attributes:
+  - name: sex
+    kind: generalizable
+    type: binary
+  - name: speaker_id
+    kind: identity
+    type: multiclass
+
+# (accent/age intentionally omitted.)
+age:
+  median_threshold: 27
+  drop_speakers: ["45"]
+
+identity_split:
+  test_size: 0.3
+  stratify: speaker
+
+probe:
+  standardize: true
+  linear:
+    type: logistic
+    C: 1.0
+    max_iter: 2000
+  mlp:
+    hidden_layer_sizes: [128]
+    max_iter: 300
+    alpha: 0.0001
+  control_task:
+    enabled: true
+  bootstrap:
+    n_boot: 1000
+    ci: 0.95
+
+# Secondary analyses (CKA, t-SNE).
+cka:
+  subsample: 4000
+viz:
+  tsne:
+    perplexity: 30
+    max_iter: 1000
+    subsample: 4000
+  pca_components: 50

@@ -1,0 +1,146 @@
+[
+  {
+    "condition": "female",
+    "seed": 42,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.968
+  },
+  {
+    "condition": "female",
+    "seed": 42,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.9500000000000001
+  },
+  {
+    "condition": "female",
+    "seed": 42,
+    "fold": 2,
+    "post_ft_eval_acc_point": 0.9433333333333334
+  },
+  {
+    "condition": "female",
+    "seed": 42,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.9460000000000001
+  },
+  {
+    "condition": "female",
+    "seed": 43,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.98
+  },
+  {
+    "condition": "female",
+    "seed": 43,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.948
+  },
+  {
+    "condition": "female",
+    "seed": 43,
+    "fold": 2,
+    "post_ft_eval_acc_point": 0.9586666666666667
+  },
+  {
+    "condition": "female",
+    "seed": 43,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.9513333333333334
+  },
+  {
+    "condition": "female",
+    "seed": 44,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.9860000000000001
+  },
+  {
+    "condition": "female",
+    "seed": 44,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.9540000000000001
+  },
+  {
+    "condition": "female",
+    "seed": 44,
+    "fold": 2,
+    "post_ft_eval_acc_point": 0.956
+  },
+  {
+    "condition": "female",
+    "seed": 44,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.9693333333333333
+  },
+  {
+    "condition": "male_control",
+    "seed": 42,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.9593333333333334
+  },
+  {
+    "condition": "male_control",
+    "seed": 42,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.9773333333333333
+  },
+  {
+    "condition": "male_control",
+    "seed": 42,
+    "fold": 2,
+    "post_ft_eval_acc_point": 0.994
+  },
+  {
+    "condition": "male_control",
+    "seed": 42,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.982
+  },
+  {
+    "condition": "male_control",
+    "seed": 43,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.96
+  },
+  {
+    "condition": "male_control",
+    "seed": 43,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.9886666666666667
+  },
+  {
+    "condition": "male_control",
+    "seed": 43,
+    "fold": 2,
+    "post_ft_eval_acc_point": 0.995
+  },
+  {
+    "condition": "male_control",
+    "seed": 43,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.995
+  },
+  {
+    "condition": "male_control",
+    "seed": 44,
+    "fold": 0,
+    "post_ft_eval_acc_point": 0.964
+  },
+  {
+    "condition": "male_control",
+    "seed": 44,
+    "fold": 1,
+    "post_ft_eval_acc_point": 0.996
+  },
+  {
+    "condition": "male_control",
+    "seed": 44,
+    "fold": 2,
+    "post_ft_eval_acc_point": 1.0
+  },
+  {
+    "condition": "male_control",
+    "seed": 44,
+    "fold": 3,
+    "post_ft_eval_acc_point": 0.992
+  }
+]

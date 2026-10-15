@@ -1,0 +1,11 @@
+arch,analysis,metric,value
+cnn1d,need_vs_attr_all,pearson_r,0.6243
+resnet1d,need_vs_attr_all,pearson_r,0.668
+cnn1d,necessity_female_vs_male,pearson_r,0.4087
+cnn1d,necessity_female_vs_male,max_divergence_band_hz,625.0
+resnet1d,necessity_female_vs_male,pearson_r,0.7709
+resnet1d,necessity_female_vs_male,max_divergence_band_hz,625.0
+crnn_gru,necessity_female_vs_male,pearson_r,0.6216
+crnn_gru,necessity_female_vs_male,max_divergence_band_hz,625.0
+spec_cnn2d,necessity_female_vs_male,pearson_r,0.9274
+spec_cnn2d,necessity_female_vs_male,max_divergence_band_hz,625.0

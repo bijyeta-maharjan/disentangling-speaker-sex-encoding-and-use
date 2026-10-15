@@ -1,0 +1,124 @@
+{
+  "git_sha": "57f4492",
+  "seed": 42,
+  "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+  "female_test_speakers": [
+    "36",
+    "43",
+    "47"
+  ],
+  "male_test_speakers": [
+    "01",
+    "03",
+    "16",
+    "17",
+    "18",
+    "23",
+    "38",
+    "44",
+    "55"
+  ],
+  "gru_note": "crnn_gru has weak global sex-decodability (prior linear-probe sex margin ~-0.006, near chance) \u2014 its unit ranking here may be near-noise; report, don't interpret.",
+  "summary": [
+    {
+      "arch": "cnn1d",
+      "n_units": 256,
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "n_female_utt": 1500,
+      "n_male_utt": 4500,
+      "participation_ratio": 103.94,
+      "pr_fraction": 0.406,
+      "distribution": "broad smear",
+      "top5_unit_index": [
+        41,
+        240,
+        66,
+        3,
+        147
+      ],
+      "top5_cohens_d": [
+        0.6,
+        0.5617,
+        0.5567,
+        0.5425,
+        0.5418
+      ]
+    },
+    {
+      "arch": "resnet1d",
+      "n_units": 256,
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "n_female_utt": 1500,
+      "n_male_utt": 4500,
+      "participation_ratio": 101.91,
+      "pr_fraction": 0.3981,
+      "distribution": "broad smear",
+      "top5_unit_index": [
+        75,
+        210,
+        8,
+        96,
+        50
+      ],
+      "top5_cohens_d": [
+        0.6528,
+        0.6446,
+        0.6345,
+        0.5765,
+        0.5737
+      ]
+    },
+    {
+      "arch": "crnn_gru",
+      "n_units": 128,
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "n_female_utt": 1500,
+      "n_male_utt": 4500,
+      "participation_ratio": 27.58,
+      "pr_fraction": 0.2155,
+      "distribution": "moderate",
+      "top5_unit_index": [
+        48,
+        10,
+        66,
+        49,
+        70
+      ],
+      "top5_cohens_d": [
+        -0.1676,
+        -0.1546,
+        0.1526,
+        -0.1482,
+        -0.1319
+      ]
+    },
+    {
+      "arch": "spec_cnn2d",
+      "n_units": 128,
+      "n_female_speakers": 3,
+      "n_male_speakers": 9,
+      "n_female_utt": 1500,
+      "n_male_utt": 4500,
+      "participation_ratio": 48.31,
+      "pr_fraction": 0.3774,
+      "distribution": "broad smear",
+      "top5_unit_index": [
+        123,
+        32,
+        21,
+        57,
+        43
+      ],
+      "top5_cohens_d": [
+        0.5515,
+        0.484,
+        0.4678,
+        0.3945,
+        0.3732
+      ]
+    }
+  ]
+}

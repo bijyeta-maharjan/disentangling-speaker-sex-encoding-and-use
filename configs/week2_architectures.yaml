@@ -1,0 +1,148 @@
+# Week-2 config — ARCHITECTURE is the independent variable.
+# Everything OUTSIDE `architectures:` is held FIXED across all models (Discipline A):
+# identical preprocessing, identical SI/SD splits (reused from Week 1), identical
+# training protocol (Adam, max epochs, early-stopping patience, batch size, CPU).
+# `scripts/train.py --arch <name>` copies architectures[<name>] into model.* and
+# trains under this shared protocol. The spectrogram model necessarily changes the
+# INPUT REPRESENTATION (a deliberate study axis) — its mel params are fixed here.
+
+seed: 42                                   # overridable per run via --seed (42, 43, 44)
+
+paths:
+  raw_root: data/raw/AudioMNIST
+  processed_dir: data/processed
+  splits_dir: splits                       # REUSE Week-1 versioned split files (do NOT regenerate)
+  experiments_dir: experiments
+  figs_dir: figures/output
+
+# --- FIXED preprocessing (identical for every WAVEFORM model) ---------------- #
+preprocess:
+  orig_sr: 48000
+  target_sr: 8000
+  target_length: 8192
+  normalize: peak
+  cache_name: waveforms_8k_8192            # same waveform cache as Week 1
+
+# --- FIXED mel params for the spectrogram model (recorded for reproducibility) #
+spectrogram:
+  n_mels: 64
+  n_fft: 256
+  hop_length: 128                          # 8192 / 128 -> 65 frames
+  fmin: 0
+  fmax: 4000                               # Nyquist at 8 kHz
+  power: 2.0
+  log: true                                # log-mel (power_to_db)
+  cache_name: melspec_8k_64mel             # data/processed/<name>.npy (+ _meta.npz)
+
+split_regime: speaker_independent          # default; overridable via --split_regime
+
+# --- FIXED split construction (same as Week 1; files are reused, not rebuilt) - #
+splits:
+  n_folds: 5
+  test_fold: 0
+  val_fold: 1
+  sd_test_size: 0.2
+  sd_val_size: 0.2
+  sd_stratify: digit
+  sb_n_male: 12
+
+# --- FIXED training protocol (identical for every architecture) -------------- #
+train:
+  batch_size: 128
+  epochs: 8
+  lr: 0.001
+  weight_decay: 0.0
+  early_stopping_patience: 3
+  num_workers: 0
+  device: cpu
+
+eval:
+  n_bootstrap: 1000
+  ci: 0.95
+  ece_bins: 15
+
+# --- the independent variable: one block per architecture -------------------- #
+# Channel widths / hidden sizes tuned so param counts stay the same order of
+# magnitude as the Week-1 baseline (226,186). Capacity is a reported covariate.
+architectures:
+  # 1. Baseline 1D CNN (reuses src/models/cnn1d.py). ~226k params.
+  cnn1d:
+    arch: cnn1d
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128, 128, 256]
+    kernel_sizes: [9, 5, 3, 3, 3]
+    pool_size: 4
+    fc_dims: [128, 64]
+    dropout: 0.3
+
+  # 2. Residual 1D CNN — same conv stack + skip connections. ~270k params.
+  resnet1d:
+    arch: resnet1d
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128, 128, 256]
+    kernel_sizes: [9, 5, 3, 3, 3]
+    pool_size: 4
+    fc_dims: [128, 64]
+    dropout: 0.3
+
+  # 3. GRU-CRNN — conv frontend (8192 -> 128 steps) then 2 GRU layers. ~235k params.
+  crnn_gru:
+    arch: crnn_gru
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128]
+    kernel_sizes: [9, 5, 3]
+    pool_size: 4                           # 8192 / 4^3 = 128 time steps
+    gru_hidden: 128
+    gru_layers: 2
+    bidirectional: false
+    dropout: 0.3
+
+  # 4. Spectrogram 2D CNN — mel input + small 2D CNN. ~189k params.
+  spec_cnn2d:
+    arch: spec_cnn2d
+    input: spectrogram
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [24, 48, 96, 128]
+    kernel_size: 3
+    pool_size: 2
+    fc_dims: [128, 64]
+    dropout: 0.3
+
+  # --- STRETCH (implemented + tested; trained only if core finishes) --------- #
+  # 5. TCN — dilated causal 1D convs, long receptive field. ~155k params.
+  tcn:
+    arch: tcn
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    stem_channels: 64
+    stem_kernel: 9
+    stem_pool: 8                           # 8192 -> 1024 steps before the dilated stack
+    channels: 64
+    kernel: 3
+    dilations: [1, 2, 4, 8, 16, 32]
+    fc_dims: [64]
+    dropout: 0.3
+
+  # 6. Conv + lightweight self-attention over the SHORT pooled sequence. ~269k params.
+  conv_attn:
+    arch: conv_attn
+    input: waveform
+    in_channels: 1
+    n_classes: 10
+    conv_channels: [32, 64, 128]
+    kernel_sizes: [9, 5, 3]
+    pool_size: 4                           # 8192 -> 128 tokens (attention never sees raw 8192)
+    d_model: 128
+    nhead: 4
+    dim_feedforward: 128
+    n_layers: 2
+    dropout: 0.3
+    max_len: 256

@@ -1,0 +1,113 @@
+{
+  "git_sha": "57f4492",
+  "seed": 42,
+  "flag": "n=3 female test speakers \u2014 within-sample, not a population claim",
+  "speaker_count_note": "AudioMNIST is 48 male / 12 female speakers dataset-wide, but this analysis follows the 'speaker-disjoint SI test fold for everything' discipline: the whitened direction was fit ONLY on the 12 SI test speakers, so correlations here use that same fold -- n=9 male / n=3 female speakers (4500 / 1500 utterances), not the dataset-wide 48/12.",
+  "excluded_note": "resnet1d and crnn_gru EXCLUDED from this analysis: their whitened sex direction sat INSIDE the random-re-split null in the re-split control (not separable from an arbitrary 3-vs-9 grouping of the same 12 speakers), so there is no validated direction to project for them. Stated explicitly, not silently dropped.",
+  "scope_archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "excluded_archs": [
+    "resnet1d",
+    "crnn_gru"
+  ],
+  "female_test_speakers": [
+    "36",
+    "43",
+    "47"
+  ],
+  "male_test_speakers": [
+    "01",
+    "03",
+    "16",
+    "17",
+    "18",
+    "23",
+    "38",
+    "44",
+    "55"
+  ],
+  "f0_extraction": {
+    "tool": "librosa.pyin",
+    "signal": "8kHz preprocessed waveform",
+    "fmin": 65.0,
+    "fmax": 300.0,
+    "frame_length": 1024,
+    "hop_length": 256
+  },
+  "rows": [
+    {
+      "arch": "cnn1d",
+      "stratum": "males_only",
+      "spearman_rho": 0.1878,
+      "spearman_p": 3.81788098711006e-30,
+      "pearson_r": 0.1748,
+      "pearson_p": 2.847194992520926e-26,
+      "n_utts": 3627,
+      "n_speakers": 9,
+      "directional": false,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    },
+    {
+      "arch": "cnn1d",
+      "stratum": "all_cross_sex",
+      "spearman_rho": 0.6644,
+      "spearman_p": 0.0,
+      "pearson_r": 0.7721,
+      "pearson_p": 0.0,
+      "n_utts": 5012,
+      "n_speakers": 12,
+      "directional": true,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    },
+    {
+      "arch": "cnn1d",
+      "stratum": "females_only",
+      "spearman_rho": 0.0615,
+      "spearman_p": 0.022173610766381868,
+      "pearson_r": 0.0563,
+      "pearson_p": 0.036291926969423814,
+      "n_utts": 1385,
+      "n_speakers": 3,
+      "directional": true,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    },
+    {
+      "arch": "spec_cnn2d",
+      "stratum": "males_only",
+      "spearman_rho": 0.1336,
+      "spearman_p": 6.64083029482913e-16,
+      "pearson_r": 0.1359,
+      "pearson_p": 2.0775059220736755e-16,
+      "n_utts": 3627,
+      "n_speakers": 9,
+      "directional": false,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    },
+    {
+      "arch": "spec_cnn2d",
+      "stratum": "all_cross_sex",
+      "spearman_rho": 0.6413,
+      "spearman_p": 0.0,
+      "pearson_r": 0.7778,
+      "pearson_p": 0.0,
+      "n_utts": 5012,
+      "n_speakers": 12,
+      "directional": true,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    },
+    {
+      "arch": "spec_cnn2d",
+      "stratum": "females_only",
+      "spearman_rho": 0.0753,
+      "spearman_p": 0.0050291455811341,
+      "pearson_r": 0.0578,
+      "pearson_p": 0.031388985676306845,
+      "n_utts": 1385,
+      "n_speakers": 3,
+      "directional": true,
+      "flag": "n=3 female test speakers \u2014 within-sample, not a population claim"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "cnn1d_42": {
+    "arch": "cnn1d",
+    "seed": 42,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236",
+    "state_dict_sha256": "ed08bf31aa1d32652734b1268f74d09bfee6d1ee338f8831ac393d6417bee89a",
+    "n_candidate_dirs": 1,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.8364999999999999,
+      "lo": 0.7741416666666666,
+      "hi": 0.8920041666666666,
+      "se": 0.029723304791638237,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.8364999999999999,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.9795999999999999,
+      "lo": 0.9596,
+      "hi": 0.9937999999999999,
+      "se": 0.00943522057968902,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.9796,
+    "male_val_ref_match": true
+  },
+  "cnn1d_43": {
+    "arch": "cnn1d",
+    "seed": 43,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260901-000310",
+    "state_dict_sha256": "3a1700af5d2fecaab0620de66684053126bcc9e7e88f1592c51c2bd5676e9869",
+    "n_candidate_dirs": 1,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.8626666666666666,
+      "lo": 0.8151583333333334,
+      "hi": 0.9048375000000001,
+      "se": 0.023323867949413487,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.8626666666666666,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.9882,
+      "lo": 0.9793899999999999,
+      "hi": 0.9956050000000002,
+      "se": 0.0043521021993461395,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.9882,
+    "male_val_ref_match": true
+  },
+  "cnn1d_44": {
+    "arch": "cnn1d",
+    "seed": 44,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260901-004053",
+    "state_dict_sha256": "0c9705d313b512c1db42afe89d9aa7038b9396768e6b0984bd5a16494ffdac9d",
+    "n_candidate_dirs": 1,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.8998333333333334,
+      "lo": 0.8553249999999999,
+      "hi": 0.9420083333333333,
+      "se": 0.02223287954595912,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.8998333333333334,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.9833999999999999,
+      "lo": 0.9587999999999999,
+      "hi": 0.9972,
+      "se": 0.01135194683465954,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.9834,
+    "male_val_ref_match": true
+  },
+  "spec_cnn2d_42": {
+    "arch": "spec_cnn2d",
+    "seed": 42,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-230741",
+    "state_dict_sha256": "9df02a2f0bcffa2b0d2f26030e108f7d0dd22fd6330a695daf2ab9ede530408a",
+    "n_candidate_dirs": 3,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.9001666666666664,
+      "lo": 0.8773333333333332,
+      "hi": 0.9238375000000001,
+      "se": 0.01225350552712402,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.9001666666666664,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.9746,
+      "lo": 0.956185,
+      "hi": 0.9883999999999998,
+      "se": 0.00873150795631495,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.9746,
+    "male_val_ref_match": true
+  },
+  "spec_cnn2d_43": {
+    "arch": "spec_cnn2d",
+    "seed": 43,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed43_5b6bc51_20260831-231142",
+    "state_dict_sha256": "7a5bedaeb26828f51249f8799f6794be8a87de5291523efe47c32b571570a1af",
+    "n_candidate_dirs": 3,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.8215,
+      "lo": 0.7573291666666666,
+      "hi": 0.8741749999999999,
+      "se": 0.02939962270986057,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.8215,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.9596,
+      "lo": 0.9343900000000002,
+      "hi": 0.9796099999999999,
+      "se": 0.012247095831923443,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.9596,
+    "male_val_ref_match": true
+  },
+  "spec_cnn2d_44": {
+    "arch": "spec_cnn2d",
+    "seed": 44,
+    "canonical_checkpoint_dir": "experiments/cross_sex_male_train_female_test_seed44_5b6bc51_20260831-231409",
+    "state_dict_sha256": "1d6cd4af6683fc6b270cb4025936d93d5f8ac4a9fc42b5fc5ca782e3a7e2054b",
+    "n_candidate_dirs": 3,
+    "n_unique_hashes": 1,
+    "determinism_verified": true,
+    "female_eval_pinned": {
+      "point": 0.8478333333333333,
+      "lo": 0.7971666666666667,
+      "hi": 0.8938333333333333,
+      "se": 0.024879569386582038,
+      "n_speakers": 12,
+      "n_boot": 1000
+    },
+    "female_eval_recorded_in_cross_sex_generalization": 0.8478333333333333,
+    "female_eval_match": true,
+    "male_val_ref_pinned": {
+      "point": 0.97,
+      "lo": 0.9315999999999999,
+      "hi": 0.995205,
+      "se": 0.017560334288968988,
+      "n_speakers": 10,
+      "n_boot": 1000
+    },
+    "male_val_ref_recorded_in_cross_sex_generalization": 0.97,
+    "male_val_ref_match": true
+  }
+}

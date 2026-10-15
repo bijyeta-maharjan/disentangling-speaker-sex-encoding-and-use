@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Disentangling Speaker Sex Encoding and Use in Spoken-Digit Classifiers"
+type: software
+license: MIT
+repository-code: "https://github.com/bijyeta-maharjan/disentangling-speaker-sex-encoding-and-use"
+authors:
+  - family-names: Maharjan
+    given-names: Bijyeta
+    affiliation: Mount Holyoke College
+  - family-names: Gumpfer
+    given-names: Nils
+    affiliation: "AAI Lab, Technische Hochschule Mittelhessen"
+date-released: 2026-10-14
+preferred-citation:
+  type: article
+  title: "Disentangling Speaker Sex Encoding and Use in Spoken-Digit Classifiers"
+  authors:
+    - family-names: Maharjan
+      given-names: Bijyeta
+      affiliation: Mount Holyoke College
+    - family-names: Gumpfer
+      given-names: Nils
+      affiliation: "AAI Lab, Technische Hochschule Mittelhessen"
+  year: 2026

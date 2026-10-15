@@ -1,0 +1,91 @@
+{
+  "git_sha": "918c797",
+  "results": [
+    {
+      "arch": "cnn1d",
+      "seed": 42,
+      "fold": 0,
+      "condition": "female",
+      "finetune_speakers": [
+        "26",
+        "28",
+        "36",
+        "43",
+        "47",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "eval_speakers": [
+        "12",
+        "52",
+        "56"
+      ],
+      "epochs": 2,
+      "lr": 0.0001,
+      "batch_size": 128,
+      "before": {
+        "point": 0.8193333333333334,
+        "lo": 0.718,
+        "hi": 0.902,
+        "se": 0.04393981700217755,
+        "n_speakers": 3,
+        "n_boot": 1000
+      },
+      "after": {
+        "point": 0.9686666666666666,
+        "lo": 0.964,
+        "hi": 0.976,
+        "se": 0.0029762707405164347,
+        "n_speakers": 3,
+        "n_boot": 1000
+      },
+      "delta_point": 0.1493333333333332,
+      "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+    },
+    {
+      "arch": "cnn1d",
+      "seed": 42,
+      "fold": 0,
+      "condition": "female",
+      "finetune_speakers": [
+        "26",
+        "28",
+        "36",
+        "43",
+        "47",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "eval_speakers": [
+        "12",
+        "52",
+        "56"
+      ],
+      "epochs": 3,
+      "lr": 0.0001,
+      "batch_size": 128,
+      "before": {
+        "point": 0.8193333333333334,
+        "lo": 0.718,
+        "hi": 0.902,
+        "se": 0.04393981700217755,
+        "n_speakers": 3,
+        "n_boot": 1000
+      },
+      "after": {
+        "point": 0.9673333333333334,
+        "lo": 0.9499999999999998,
+        "hi": 0.9780000000000001,
+        "se": 0.00711507347064774,
+        "n_speakers": 3,
+        "n_boot": 1000
+      },
+      "delta_point": 0.14800000000000002,
+      "base_checkpoint": "experiments/cross_sex_male_train_female_test_seed42_5b6bc51_20260831-233236"
+    }
+  ]
+}

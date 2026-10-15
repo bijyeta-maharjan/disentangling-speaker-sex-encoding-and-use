@@ -1,0 +1,58 @@
+# Day 2 baseline config — AudioMNIST 1D-CNN digit classifier.
+# Scripts read this file; no magic numbers buried in code.
+# Switch `split_regime` to train/evaluate a different regime with the SAME
+# architecture / seed / training budget (the leakage-gap comparison depends on this).
+
+seed: 42
+
+paths:
+  raw_root: data/raw/AudioMNIST          # one dir per speaker, files {digit}_{speaker}_{rep}.wav
+  processed_dir: data/processed          # waveform cache lives here
+  splits_dir: splits                     # versioned, committed split assignments
+  experiments_dir: experiments           # per-run logs/checkpoints
+  figs_dir: figures/output                 # saved figures
+
+preprocess:
+  orig_sr: 48000
+  target_sr: 8000                        # 48k -> 8k resample
+  target_length: 8192                    # pad/trim to fixed length (~1.024 s @ 8 kHz)
+  normalize: peak                        # per-UTTERANCE peak normalization (|x|max -> 1). NOT per-speaker.
+  cache_name: waveforms_8k_8192          # data/processed/<cache_name>.npy (+ _meta.npz, _manifest.parquet)
+
+# Which regime scripts/train.py and scripts/evaluate.py operate on.
+split_regime: speaker_independent        # speaker_independent | speaker_dependent | sex_balanced
+
+splits:
+  n_folds: 5                             # StratifiedGroupKFold folds for speaker-level regimes
+  test_fold: 0                           # fold used as TEST
+  val_fold: 1                            # a *different* fold carved out as VAL (speaker-disjoint)
+  # speaker_dependent: random UTTERANCE split matching the speaker_independent proportions
+  # (test = 12/60 speakers = 20%, val = 12/60 = 20%, train = 36/60 = 60%).
+  sd_test_size: 0.2
+  sd_val_size: 0.2
+  sd_stratify: digit                     # stratify the utterance split by digit
+  # sex_balanced: 12 female + sb_n_male randomly-sampled male speakers, then a speaker-independent split.
+  sb_n_male: 12
+
+model:
+  in_channels: 1
+  n_classes: 10
+  conv_channels: [32, 64, 128, 128, 256]
+  kernel_sizes: [9, 5, 3, 3, 3]          # wide first kernel, narrow afterwards
+  pool_size: 4                           # MaxPool1d stride per block
+  fc_dims: [128, 64]                     # dense head 256 -> 128 -> 64 -> 10
+  dropout: 0.3
+
+train:
+  batch_size: 128
+  epochs: 8                              # CPU budget: full data + full arch, fewer epochs (regime C)
+  lr: 0.001
+  weight_decay: 0.0
+  early_stopping_patience: 3             # epochs without val-accuracy improvement
+  num_workers: 0                         # 0 avoids macOS spawn re-pickling the 983 MB memmap
+  device: cpu                            # CPU-only setup; no .cuda()/cudnn calls
+
+eval:
+  n_bootstrap: 1000                      # speaker-level bootstrap resamples for group-metric CIs
+  ci: 0.95
+  ece_bins: 15

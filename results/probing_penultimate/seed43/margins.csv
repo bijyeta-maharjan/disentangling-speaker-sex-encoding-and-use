@@ -1,0 +1,9 @@
+arch,attribute,probe,chance,trained_acc,untrained_acc,margin,trained_selectivity,untrained_selectivity,trained_random_acc,leakage_gap_sd_si
+cnn1d,sex,linear,0.75,0.89233,0.971,-0.07867,0.14817,0.21533,0.74417,0.0327
+resnet1d,sex,linear,0.75,0.93633,0.9725,-0.03617,0.19983,0.256,0.7365,0.0543
+crnn_gru,sex,linear,0.75,0.74117,0.74983,-0.00866,-0.06783,-0.07983,0.809,0.0137
+spec_cnn2d,sex,linear,0.75,0.93083,0.959,-0.02817,0.202,0.21167,0.72883,0.0287
+cnn1d,speaker_id,linear,0.01667,0.78711,0.714,0.07311,0.76822,0.69844,0.01889,0.0327
+resnet1d,speaker_id,linear,0.01667,0.79322,0.70956,0.08366,0.778,0.69344,0.01522,0.0543
+crnn_gru,speaker_id,linear,0.01667,0.402,0.05556,0.34644,0.38756,0.03933,0.01444,0.0137
+spec_cnn2d,speaker_id,linear,0.01667,0.81989,0.68333,0.13656,0.80267,0.66578,0.01722,0.0287

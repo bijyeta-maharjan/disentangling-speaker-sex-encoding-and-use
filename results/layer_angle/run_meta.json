@@ -1,0 +1,26 @@
+{
+  "created": "20260903-203701",
+  "git_sha": "5b6bc51",
+  "archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_null": 300,
+  "n_flag": "n=3 female test speakers -- within-sample, not a population claim",
+  "sex_subspace_dim_k": 1,
+  "sex_subspace_dim_rationale": "Binary female-vs-male contrast has exactly one degree of freedom between the two group means -- the whitened logistic-regression direction is rank-1 by construction, consistent with every other sex-direction estimator in this repo. k=1 reported explicitly per row (sex_subspace_dim column), not silently assumed.",
+  "sex_subspace_fit_population": "SI test fold (12 speakers, 9M/3F) -- per pre-registration, NOT the train+val fold used by geom_within_digit.py's (b)/(c) measures (that choice trades power for evaluation-population consistency with the digit-gradient, computed on the same fold).",
+  "digit_gradient_population": "SI test fold, same 12 speakers / 6000 utterances as the sex-subspace fit.",
+  "digit_gradient_aggregation": "unit-normalize each utterance's gradient, top eigenvector of the mean outer-product matrix (sign-invariant, avoids signed cancellation across utterances with different correct digits).",
+  "angle_formula_reused_from": "scripts/geom_within_digit.py (angle = degrees(arccos(clip(||basis @ v||,0,1))))",
+  "pre_registered_expectation": "CONFIRMATORY: the digit-gradient stays >=~80 degrees from the sex subspace at every layer in both architectures, consistent with the penultimate result -- no layer where the decision aligns with sex. Written before running; watching for any layer that drops well below that as the interesting exception.",
+  "claim_boundary": "GEOMETRIC claim only: near-orthogonality means the decision axis does not align with sex at that layer. Bounds alignment/pathway, not strict necessity (would need perturbation, out of scope here). Confidence comes from cross-layer/cross-architecture/cross-seed consistency, not from the female sample size (n=3).",
+  "decision_rule": "All layers near-orthogonal (angle >= null, both archs, seed-stable) -> whole-pipeline geometric support for 'not used'. A seed-stable layer below the null -> interesting exception, flagged, not overclaimed as necessity. Seed-unstable -> inconclusive at that layer.",
+  "overall_verdict": "ALL_LAYERS_NEAR_ORTHOGONAL",
+  "overall_verdict_text": "Every layer, every seed, both architectures: the digit-gradient direction stays at/above the random-subspace null relative to the sex subspace (never seed-stably below it). The digit decision's gradient does not align with sex anywhere in the pipeline -- whole-pipeline geometric support for 'not used', broadening the penultimate-only readout result. This is a geometric/alignment claim, not a necessity claim (no perturbation was run here)."
+}

@@ -1,0 +1,62 @@
+{
+  "git_sha": "918c797",
+  "analysis": "finetune_recovery",
+  "epochs_locked": 2,
+  "epoch_gate_pilot": "results/female_finetune/pilot_epoch_gate.json (fold0 cnn1d seed42: epochs=2 delta=+0.149 [CI non-overlapping], epochs=3 delta=+0.148 -- no added benefit, 2 epochs locked)",
+  "lr": 0.0001,
+  "batch_size": 128,
+  "weight_decay": 0.0,
+  "optimizer": "Adam",
+  "archs": [
+    "cnn1d",
+    "spec_cnn2d"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_folds_female": 4,
+  "n_folds_male_control": 4,
+  "pinned_checkpoints_manifest": "results/female_finetune/pinned_checkpoints.json",
+  "bounded_claim": "Fine-tuning shows what the model CAN RECRUIT to help with a new group, not what the original model was USING. This is true for both conditions.",
+  "male_control_asymmetry": "The male-control pool is NOT a clean analogue of the female pool, in TWO confounded ways: (1) exposure -- the 10 val-only males had zero gradient updates but DID influence checkpoint selection (weak exposure, not true zero exposure like the 12 women); (2) ceiling -- the male-only model's pre-fine-tune accuracy on these males is already very high (0.92-0.99, vs 0.79-0.93 for the women), leaving far less headroom for fine-tuning to show ANY improvement regardless of mechanism. Both confounds bias the male-control condition toward showing a SMALLER delta than the female condition even under a purely generic-adaptation story. Therefore: if female and male-control signatures MATCH (layer-change / band-shift analyses), that is STRONG evidence for generic adaptation (agreement despite two biases pushing toward disagreement). If they DIFFER, that CANNOT be reported as a clean female-specific finding -- it is confounded with novel-vs-familiar exposure AND with ceiling/headroom, not sex alone. Report differences as 'suggestive, control-confounded', never as a clean female-specific claim.",
+  "n_flag_female": "fine-tune female n<=9, eval female n=3 per fold -- within-sample, not a population claim",
+  "n_flag_male_control": "male-control fine-tune n<=8, eval n<=3 per fold, drawn from val-only (weak-exposure) males -- within-sample, control-confounded, not a clean zero-exposure analogue",
+  "pooling_note": "Fold spread is reported (min/max of the seed-averaged per-fold delta); folds are NEVER pooled into one tighter CI across folds (locked out-of-scope decision).",
+  "pre_registered_gate": "If female fine-tuning doesn't reliably improve female accuracy, the 'what changed' analysis has nothing to localize -- flag as null. If it does improve, compare magnitude to male-control: comparable -> generic adaptation at the behavioral level; larger -> proceed to the layer-change / band-shift analyses but do NOT claim female-specificity from accuracy alone, since the male-control asymmetry above predicts a smaller male-control delta even under pure generic adaptation.",
+  "verdicts": {
+    "cnn1d": {
+      "verdict": "LARGER_THAN_MALE_CONTROL_CONFOUNDED",
+      "text": "Female fine-tuning helps substantially more than the male-control condition at the behavioral level, BUT this asymmetry is expected even under generic adaptation because of the exposure and ceiling confounds (see male_control_asymmetry note) -- this alone does NOT establish a female-specific mechanism. Proceed to the layer-change / band-shift analyses (frequency/layer double-difference) to determine whether the mechanism is genuinely different, reporting any such finding as suggestive and control-confounded, never clean.",
+      "female_delta_mean": 0.09399999999999996,
+      "female_delta_fold_range": [
+        0.01488888888888884,
+        0.13333333333333328
+      ],
+      "female_frac_positive": 0.9166666666666666,
+      "male_control_delta_mean": -0.0010555555555555411,
+      "male_control_delta_fold_range": [
+        -0.005999999999999968,
+        0.001777777777777804
+      ],
+      "male_control_frac_positive": 0.3333333333333333
+    },
+    "spec_cnn2d": {
+      "verdict": "LARGER_THAN_MALE_CONTROL_CONFOUNDED",
+      "text": "Female fine-tuning helps substantially more than the male-control condition at the behavioral level, BUT this asymmetry is expected even under generic adaptation because of the exposure and ceiling confounds (see male_control_asymmetry note) -- this alone does NOT establish a female-specific mechanism. Proceed to the layer-change / band-shift analyses (frequency/layer double-difference) to determine whether the mechanism is genuinely different, reporting any such finding as suggestive and control-confounded, never clean.",
+      "female_delta_mean": 0.10788888888888892,
+      "female_delta_fold_range": [
+        0.07777777777777783,
+        0.1575555555555556
+      ],
+      "female_frac_positive": 1.0,
+      "male_control_delta_mean": 0.007888888888888909,
+      "male_control_delta_fold_range": [
+        0.001666666666666668,
+        0.01833333333333335
+      ],
+      "male_control_frac_positive": 0.6666666666666666
+    }
+  }
+}

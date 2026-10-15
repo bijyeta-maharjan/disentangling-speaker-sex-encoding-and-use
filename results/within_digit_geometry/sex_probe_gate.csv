@@ -1,0 +1,5 @@
+arch,acc,ci_lo,ci_hi,chance,gate_pass
+cnn1d,0.93517,0.89649,0.969,0.75,True
+resnet1d,0.96267,0.9285,0.99,0.75,True
+crnn_gru,0.73683,0.52782,0.9112,0.75,False
+spec_cnn2d,0.9235,0.86331,0.97734,0.75,True

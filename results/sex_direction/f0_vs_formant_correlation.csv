@@ -1,0 +1,25 @@
+arch,stratum,spearman_rho,spearman_p,pearson_r,pearson_p,n_utts,n_speakers,directional,flag,feature,n_intersection
+cnn1d,males_only,0.1878,3.81788098711006e-30,0.1748,2.847194992520926e-26,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+cnn1d,all_cross_sex,0.6644,0.0,0.7721,0.0,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+cnn1d,females_only,0.0615,0.022173610766381868,0.0563,0.036291926969423814,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+cnn1d,males_only,0.0232,0.16212664735358634,0.0376,0.02364933519894557,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+cnn1d,all_cross_sex,-0.1014,6.366924349824316e-13,-0.1185,3.902875459700821e-17,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+cnn1d,females_only,-0.2106,2.3853800027708914e-15,-0.2179,2.3531174559347717e-16,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+cnn1d,males_only,-0.0403,0.015312074229058684,-0.001,0.9538173723799664,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+cnn1d,all_cross_sex,-0.052,0.00022985752439900927,-0.0488,0.0005512992226310042,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+cnn1d,females_only,-0.2878,7.843449434379187e-28,-0.2983,7.401867430974216e-30,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+cnn1d,males_only,-0.0039,0.8132880438553834,0.0294,0.07699518562278548,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F3,5012
+cnn1d,all_cross_sex,-0.1418,6.49080756536541e-24,-0.1753,6.985660916428644e-36,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F3,5012
+cnn1d,females_only,-0.2637,1.7905884176302002e-23,-0.2578,1.8299900172848756e-22,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F3,5012
+spec_cnn2d,males_only,0.1336,6.64083029482913e-16,0.1359,2.0775059220736755e-16,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+spec_cnn2d,all_cross_sex,0.6413,0.0,0.7778,0.0,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+spec_cnn2d,females_only,0.0753,0.0050291455811341,0.0578,0.031388985676306845,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F0,5012
+spec_cnn2d,males_only,0.1384,5.605947057382629e-17,0.1298,4.299294954909323e-15,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+spec_cnn2d,all_cross_sex,-0.04,0.004630594007774347,-0.0883,3.730825710597559e-10,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+spec_cnn2d,females_only,-0.2457,1.7158491912358595e-20,-0.2422,6.036917154601825e-20,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F1,5012
+spec_cnn2d,males_only,-0.0176,0.2895736777685612,-0.0295,0.07537632005388785,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+spec_cnn2d,all_cross_sex,-0.039,0.005721460098579448,-0.058,3.967659951098231e-05,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+spec_cnn2d,females_only,-0.2529,1.1844585054227802e-21,-0.2406,1.09027049020149e-19,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F2,5012
+spec_cnn2d,males_only,0.0123,0.46060433898086495,-0.0023,0.890509535554577,3627,9,False,"n=3 female test speakers — within-sample, not a population claim",F3,5012
+spec_cnn2d,all_cross_sex,-0.1373,1.5510533102870676e-22,-0.2042,2.6423480944458015e-48,5012,12,True,"n=3 female test speakers — within-sample, not a population claim",F3,5012
+spec_cnn2d,females_only,-0.3147,3.291230182498012e-33,-0.3085,6.311686780802311e-32,1385,3,True,"n=3 female test speakers — within-sample, not a population claim",F3,5012

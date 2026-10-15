@@ -1,0 +1,92 @@
+{
+  "regime": "male_control_finetune_localization_folds",
+  "version": 1,
+  "split_seed": 42,
+  "unit": "speaker",
+  "k_folds": 4,
+  "base_model_split": "splits/cross_sex_male_train_female_test.json",
+  "candidate_pool": "val_only_males_weak_exposure",
+  "description": "K-fold fine-tune/eval split over the 10 male speakers the male-only model used ONLY for early-stopping selection (val role: no gradient update on their audio, but their accuracy did influence which epoch's checkpoint was kept). This is the largest available matched pool -- the male-only model's train+val already covers all 48 male speakers, so ZERO males have true zero exposure (unlike the 12 women, all of whom are true zero-exposure). Eval sizes [3,3,2,2] (10 does not divide evenly by 4); fine-tune sizes [7,7,8,8] accordingly -- both smaller than the female design's clean 3/9 because the male candidate pool itself is smaller (10, not 12).",
+  "n_male_total": 48,
+  "n_val_only_males": 10,
+  "n_truly_unseen_males": 0,
+  "n_flag": "male control uses WEAK-exposure (val-selection only) speakers, not true zero-exposure speakers like the female pool -- interpret any male-control shift as a conservative (likely underestimated) floor, not a clean analogue of the female condition",
+  "folds": [
+    {
+      "fold": 0,
+      "finetune": [
+        "22",
+        "27",
+        "32",
+        "34",
+        "51",
+        "53",
+        "55"
+      ],
+      "eval": [
+        "06",
+        "39",
+        "42"
+      ],
+      "n_finetune": 7,
+      "n_eval": 3
+    },
+    {
+      "fold": 1,
+      "finetune": [
+        "06",
+        "22",
+        "34",
+        "39",
+        "42",
+        "53",
+        "55"
+      ],
+      "eval": [
+        "27",
+        "32",
+        "51"
+      ],
+      "n_finetune": 7,
+      "n_eval": 3
+    },
+    {
+      "fold": 2,
+      "finetune": [
+        "06",
+        "22",
+        "27",
+        "32",
+        "39",
+        "42",
+        "51",
+        "53"
+      ],
+      "eval": [
+        "34",
+        "55"
+      ],
+      "n_finetune": 8,
+      "n_eval": 2
+    },
+    {
+      "fold": 3,
+      "finetune": [
+        "06",
+        "27",
+        "32",
+        "34",
+        "39",
+        "42",
+        "51",
+        "55"
+      ],
+      "eval": [
+        "22",
+        "53"
+      ],
+      "n_finetune": 8,
+      "n_eval": 2
+    }
+  ]
+}

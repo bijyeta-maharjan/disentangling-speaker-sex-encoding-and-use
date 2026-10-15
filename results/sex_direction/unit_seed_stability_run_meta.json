@@ -1,0 +1,80 @@
+{
+  "git_sha": "57f4492",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "flag": "n=3 female test speakers \u2014 selectivity is within-sample, not a population claim",
+  "topk": 20,
+  "partition_check": {
+    "n_folds": 5,
+    "test_fold": 0,
+    "val_fold": 1,
+    "partition_fixed": true
+  },
+  "framing_note": "stable to retraining, NOT stable across female samples (partition fixed, checked not assumed)",
+  "basis_caveat": "raw unit indices not comparable across architectures",
+  "stability": [
+    {
+      "arch": "cnn1d",
+      "n_units": 256,
+      "topk": 20,
+      "jaccard_42v43": 0.0,
+      "jaccard_42v44": 0.081,
+      "jaccard_43v44": 0.0,
+      "mean_jaccard_stable_to_retraining": 0.027,
+      "chance_jaccard_null": 0.041,
+      "jaccard_verdict": "AT/BELOW chance (no reproducible top-k set)",
+      "spearman_42v43": -0.125,
+      "spearman_42v44": 0.011,
+      "spearman_43v44": -0.009,
+      "mean_spearman_full_|d|_vector": -0.041
+    },
+    {
+      "arch": "resnet1d",
+      "n_units": 256,
+      "topk": 20,
+      "jaccard_42v43": 0.081,
+      "jaccard_42v44": 0.0,
+      "jaccard_43v44": 0.026,
+      "mean_jaccard_stable_to_retraining": 0.036,
+      "chance_jaccard_null": 0.041,
+      "jaccard_verdict": "AT/BELOW chance (no reproducible top-k set)",
+      "spearman_42v43": -0.044,
+      "spearman_42v44": 0.078,
+      "spearman_43v44": 0.016,
+      "mean_spearman_full_|d|_vector": 0.017
+    },
+    {
+      "arch": "crnn_gru",
+      "n_units": 128,
+      "topk": 20,
+      "jaccard_42v43": 0.081,
+      "jaccard_42v44": 0.176,
+      "jaccard_43v44": 0.053,
+      "mean_jaccard_stable_to_retraining": 0.103,
+      "chance_jaccard_null": 0.085,
+      "jaccard_verdict": "AT/BELOW chance (no reproducible top-k set)",
+      "spearman_42v43": 0.04,
+      "spearman_42v44": -0.015,
+      "spearman_43v44": 0.011,
+      "mean_spearman_full_|d|_vector": 0.012
+    },
+    {
+      "arch": "spec_cnn2d",
+      "n_units": 128,
+      "topk": 20,
+      "jaccard_42v43": 0.026,
+      "jaccard_42v44": 0.081,
+      "jaccard_43v44": 0.081,
+      "mean_jaccard_stable_to_retraining": 0.063,
+      "chance_jaccard_null": 0.085,
+      "jaccard_verdict": "AT/BELOW chance (no reproducible top-k set)",
+      "spearman_42v43": -0.128,
+      "spearman_42v44": -0.103,
+      "spearman_43v44": 0.037,
+      "mean_spearman_full_|d|_vector": -0.065
+    }
+  ]
+}
