@@ -4,9 +4,9 @@
 Pure re-analysis of the seed-42 occlusion output (scripts/xai_freq_occlusion.py).
 Reads results/freq_occlusion/occlusion_results.csv and produces:
 
-  figures/output/necessity_all_arch.png    -- 4 archs' group=all necessity profiles,
-                                              overlaid on shared axes, speech bands shaded
-                                              (paper figure necessity_all_arch.png)
+  necessity_all_arch.{pdf,png}             -- paper figure (IEEE style), in figures/ and
+                                              paper/figures/: 4 archs' group=all necessity
+                                              profiles, F0 and F1/F2 regions shaded
   figures/output/necessity_by_group.png    -- female/male profiles per arch (availability only)
   results/freq_occlusion/necessity_summary.csv
                                            -- per-arch: drop@pitch(0-250), drop@peak band,
@@ -22,12 +22,16 @@ Hypotheses written down before running (this script tests them):
 This script only COMPUTES the numbers/figure; it does not edit the hypothesis or draw conclusions.
 """
 import os
+import sys
 
 import matplotlib
 matplotlib.use("Agg")  # headless
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from figures import ieee_style as S  # noqa: E402
 
 # --- paths (anchored to project root = parent of figures/) ---
 PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -107,27 +111,21 @@ def summarize(df):
 
 
 def plot_overlay(df):
+    """Paper figure necessity_all_arch (IEEE style): accuracy drop per occluded band, 4 models."""
     dall = df[df.group == "all"]
-    fig, ax = plt.subplots(figsize=(10, 5.5))
-    for lbl, lo, hi, c in SPEECH_BANDS:
-        ax.axvspan(lo, hi, color=c, alpha=0.12, lw=0)
-        ax.text((lo + hi) / 2, ax.get_ylim()[1], lbl, ha="center", va="bottom", fontsize=8, color="0.3")
+    fig, ax = S.figure(2.85, 1.7)
+    S.shade_speech_regions(ax)
     for a in ARCHS:
         p = dall[dall.arch == a].sort_values("center")
-        ax.plot(p.center, p.acc_drop, marker="o", ms=4, lw=1.6, label=a)
-    ax.axhline(0, color="0.7", lw=0.8)
-    ax.set_xlabel("frequency band center (Hz)")
-    ax.set_ylabel("digit-accuracy drop when band removed  (necessity)")
-    ax.set_title("Frequency-reliance (necessity) profiles — seed 42 SI, n=6000, group=all\n"
-                 "band-stop removes FREQUENCY (content+speaker jointly), not identity")
-    ax.legend(title="architecture", loc="upper right")
-    ax.text(0.99, -0.13, "8 kHz SR: Nyquist=4 kHz; fricative energy >4 kHz absent",
-            transform=ax.transAxes, ha="right", va="top", fontsize=8, color="0.4")
-    fig.tight_layout()
-    out = os.path.join(FIGS_DIR, "necessity_all_arch.png")
-    fig.savefig(out, dpi=150)
-    plt.close(fig)
-    return out
+        S.model_line(ax, p.center, 100 * p.acc_drop, a)
+    ax.axhline(0, color="black", lw=0.6)
+    ax.set_xlim(0, 4000)
+    ax.set_ylim(-1.5, 29)
+    ax.set_xlabel("Frequency band centre (Hz)")
+    ax.set_ylabel("Accuracy drop (pp)")
+    ax.legend(loc="upper right")
+    S.save(fig, "necessity_all_arch")
+    return "necessity_all_arch"
 
 
 def plot_by_group(df):

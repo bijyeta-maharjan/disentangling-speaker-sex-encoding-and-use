@@ -233,31 +233,32 @@ def run_leave_one_out(archs: list[str]) -> dict:
 # --------------------------------------------------------------------------- #
 # figures
 # --------------------------------------------------------------------------- #
-def make_same_size_figure(same_size: dict, cross_sex_female_gap: dict, out_path: Path) -> None:
-    fig, ax = plt.subplots(figsize=(7, 5))
+def make_same_size_figure(same_size: dict, cross_sex_female_gap: dict, out_path: Path | None = None) -> None:
+    """Paper figure male_only_gap (IEEE style): accuracy change relative to the SI baseline
+    (pp, seed-pooled, speaker-bootstrap 95% CI) for the model trained without women (tested on
+    the 3 held-out women) and the same-size male control (tested on the 9 held-out men)."""
+    from figures import ieee_style as S
+
     archs = list(same_size["by_arch"].keys())
     x = np.arange(len(archs))
-    width = 0.35
-
-    male_gaps = [same_size["by_arch"][a]["pooled"]["gap_ci"] for a in archs]
-    female_gaps = [cross_sex_female_gap[a] for a in archs]
-
-    ax.bar(x - width / 2, [g["point"] for g in male_gaps], width, label="male->male gap (n=9, well-powered)",
-           yerr=[[g["point"] - g["lo"] for g in male_gaps], [g["hi"] - g["point"] for g in male_gaps]],
-           capsize=5, color="tab:green")
-    ax.bar(x + width / 2, [g["point"] for g in female_gaps], width, label="cross-sex female gap (n=3, held-out-only)",
-           yerr=[[g["point"] - g["lo"] for g in female_gaps], [g["hi"] - g["point"] for g in female_gaps]],
-           capsize=5, color="tab:purple")
-    ax.axhline(0, color="black", linewidth=0.8)
-    ax.set_xticks(x)
-    ax.set_xticklabels(archs)
-    ax.set_ylabel("Accuracy gap (subset-trained minus SI-baseline, same held-out speakers)")
-    ax.set_title("Same-size male control vs. male-only model on held-out women\n"
-                "male gap well-powered (n=9); female gap n=3, directional")
-    ax.legend(fontsize=8)
-    fig.tight_layout()
-    fig.savefig(out_path, dpi=150, bbox_inches="tight")
-    plt.close(fig)
+    width = 0.34
+    series = [
+        ("Trained without women, tested on women", [cross_sex_female_gap[a] for a in archs], S.FEMALE, -width / 2),
+        ("Same-size control, tested on men", [same_size["by_arch"][a]["pooled"]["gap_ci"] for a in archs], S.MALE, width / 2),
+    ]
+    fig, ax = S.figure(2.2, 1.8)
+    for label, gaps, color, dx in series:
+        pts = np.array([100 * g["point"] for g in gaps])
+        err = [[100 * (g["point"] - g["lo"]) for g in gaps], [100 * (g["hi"] - g["point"]) for g in gaps]]
+        ax.bar(x + dx, pts, width, color=color, label=label, yerr=err, error_kw=dict(ecolor="black", **S.ERRORBAR))
+    ax.axhline(0, color="black", lw=0.6)
+    ax.set_xticks(x, [S.MODEL_NAME[a] for a in archs])
+    ax.tick_params(axis="x", length=0)
+    ax.set_ylabel("Accuracy change (pp)")
+    ax.set_ylim(-13, 0.5)
+    fig.legend(loc="outside upper left", ncol=1, handlelength=1.2)
+    S.light_grid(ax)
+    S.save(fig, "male_only_gap")
 
 
 def make_leave_one_out_figure(leave_one_out: dict, out_path: Path) -> None:
@@ -293,9 +294,7 @@ def redraw_from_saved(archs: list[str]) -> None:
         f = df[(df["arch"] == arch) & (df["test_type"] == "female")].iloc[0]
         same_size["by_arch"][arch] = {"pooled": {"gap_ci": {"point": m["gap"], "lo": m["ci_low"], "hi": m["ci_high"]}}}
         female_gap[arch] = {"point": f["gap"], "lo": f["ci_low"], "hi": f["ci_high"]}
-    FIGS_DIR.mkdir(parents=True, exist_ok=True)
-    make_same_size_figure(same_size, female_gap, FIGS_DIR / "male_only_gap.png")
-    print(f"[cross_sex_controls] figure -> {FIGS_DIR / 'male_only_gap.png'}")
+    make_same_size_figure(same_size, female_gap)
 
 
 # --------------------------------------------------------------------------- #

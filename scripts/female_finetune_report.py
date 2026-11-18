@@ -5,6 +5,9 @@ Per-fold spread is reported, never pooled into one CI across folds (locked
 out-of-scope decision). See scripts/female_finetune.py for the
 fine-tuning protocol and the male-control asymmetry this report must stamp
 on every artifact.
+
+    python scripts/female_finetune_report.py            # tables, run-meta and figure
+    python scripts/female_finetune_report.py --redraw   # figure only, from recovery_fold_seed_avg.csv
 """
 from __future__ import annotations
 
@@ -47,6 +50,37 @@ MALE_CONTROL_ASYMMETRY = (
     "exposure AND with ceiling/headroom, not sex alone. Report differences as "
     "'suggestive, control-confounded', never as a clean female-specific claim."
 )
+
+
+CONDITIONS = {"female": ("Women", "o", -0.1), "male_control": ("Male control", "s", 0.1)}
+
+
+def recovery_figure(fold_avg: pd.DataFrame) -> None:
+    """Paper figure finetune_recovery (IEEE style): per fold, the change in accuracy from
+    fine-tuning (pp; seed mean, error bars = min/max over seeds 42/43/44), women vs. male control."""
+    from figures import ieee_style as S
+
+    archs = [a for a in S.MODEL_ORDER if a in set(fold_avg["arch"])]
+    fig, axes = S.figure(3.9, 1.9, 1, len(archs), sharey=True)
+    for ax, arch in zip(axes, archs):
+        for cond, (label, marker, dx) in CONDITIONS.items():
+            fa = fold_avg[(fold_avg["arch"] == arch) & (fold_avg["condition"] == cond)].sort_values("fold")
+            color = S.FEMALE if cond == "female" else S.MALE
+            ax.errorbar(fa["fold"] + dx, 100 * fa["delta_mean"],
+                        yerr=[100 * (fa["delta_mean"] - fa["delta_min"]), 100 * (fa["delta_max"] - fa["delta_mean"])],
+                        color=color, marker=marker, ms=S.MARKERSIZE, ls="none", label=label, **S.ERRORBAR)
+        ax.axhline(0, color="black", lw=0.6)
+        ax.set_title(S.MODEL_NAME[arch])
+        ax.set_xlabel("Fold")
+        ax.set_xticks(sorted(fold_avg["fold"].unique()))
+        S.light_grid(ax)
+    axes[0].set_ylabel("Accuracy change (pp)")
+    axes[0].legend(loc="upper left")
+    S.save(fig, "finetune_recovery")
+
+
+def redraw_from_saved() -> None:
+    recovery_figure(pd.read_csv(OUT_DIR / "recovery_fold_seed_avg.csv"))
 
 
 def main() -> None:
@@ -121,28 +155,7 @@ def main() -> None:
             "male_control_frac_positive": float(male["frac_runs_positive"]),
         }
 
-    # Figure: per-fold delta means, female vs male-control, per arch
-    fig, axes = plt.subplots(1, 2, figsize=(11, 5), sharey=True)
-    for ax, arch in zip(axes, sorted(df["arch"].unique())):
-        for cond, color, marker in [("female", "tab:red", "o"), ("male_control", "tab:blue", "s")]:
-            fa = fold_avg[(fold_avg["arch"] == arch) & (fold_avg["condition"] == cond)].sort_values("fold")
-            ax.errorbar(fa["fold"], fa["delta_mean"],
-                        yerr=[fa["delta_mean"] - fa["delta_min"], fa["delta_max"] - fa["delta_mean"]],
-                        fmt=marker, color=color, capsize=4, markersize=8, label=cond,
-                        linestyle="-", alpha=0.85)
-        ax.axhline(0, color="gray", linewidth=1, linestyle="--")
-        ax.set_title(arch)
-        ax.set_xlabel("fold")
-        ax.set_xticks(sorted(df["fold"].unique()))
-    axes[0].set_ylabel("eval accuracy delta (after - before fine-tune)")
-    axes[0].legend(fontsize=9)
-    fig.suptitle("Fine-tune eval-accuracy improvement, female vs. male-control, per fold\n"
-                 "(error bars = min/max across seeds 42/43/44 within that fold -- NOT a pooled CI)", fontsize=10)
-    fig.text(0.5, -0.02, BOUNDED_CLAIM, ha="center", fontsize=7.5, style="italic", wrap=True)
-    fig.tight_layout()
-    FIGS_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIGS_DIR / "finetune_recovery.png", dpi=150, bbox_inches="tight")
-    plt.close(fig)
+    recovery_figure(fold_avg)
 
     run_meta = {
         "git_sha": git_sha(),
@@ -180,4 +193,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if "--redraw" in sys.argv[1:]:
+        redraw_from_saved()
+    else:
+        main()

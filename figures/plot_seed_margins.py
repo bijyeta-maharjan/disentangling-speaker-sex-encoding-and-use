@@ -7,30 +7,31 @@ values are checked against it (to 1e-12) instead of overwriting it:
 
   in : results/probing_penultimate/seed{42,43,44}/margins.csv
   out: results/probing_penultimate/multiseed_margin_summary.csv
-       figures/output/seed_margins.png
+       seed_margins.{pdf,png} in figures/ and paper/figures/ (IEEE style; bars = mean,
+       error bars = seed range, markers = individual seeds)
 
     python figures/plot_seed_margins.py
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from figures import ieee_style as S  # noqa: E402
+
 PROBE_DIR = ROOT / "results" / "probing_penultimate"
 SUMMARY_CSV = PROBE_DIR / "multiseed_margin_summary.csv"
-OUT_PNG = ROOT / "figures" / "output" / "seed_margins.png"
 
 SEEDS = [42, 43, 44]
 ARCH_ORDER = ["cnn1d", "resnet1d", "crnn_gru", "spec_cnn2d"]
 ATTRS = ["sex", "speaker_id"]
-COLORS = {"sex": "#7f8c8d", "speaker_id": "#c0392b"}
+TITLES = {"sex": "Sex", "speaker_id": "Speaker identity"}
 
 
 def main() -> None:
@@ -58,23 +59,24 @@ def main() -> None:
         summary.to_csv(SUMMARY_CSV, index=False)
         print(f"wrote {SUMMARY_CSV}")
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.8))
+    fig, axes = S.figure(6.3, 2.0, 1, 2)
+    x = np.arange(len(ARCH_ORDER))
     for ax, attr in zip(axes, ATTRS):
         s = summary[summary["attribute"] == attr].set_index("arch").loc[ARCH_ORDER]
-        x = np.arange(len(ARCH_ORDER))
-        ax.bar(x, s["mean"], color=COLORS[attr], width=0.8,
-               yerr=[s["mean"] - s["min"], s["max"] - s["mean"]], capsize=6)
-        ax.set_xticks(x)
-        ax.set_xticklabels(ARCH_ORDER, rotation=20)
-        ax.set_ylabel("trained − untrained probe acc")
-        ax.set_title(f"{attr} margin (mean ± seed-range, n={len(SEEDS)} seeds)")
-        ax.grid(axis="y", alpha=0.3)
-    fig.tight_layout()
-    OUT_PNG.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT_PNG, dpi=150)
-    plt.close(fig)
+        ax.bar(x, s["mean"], width=0.6, color=[S.MODEL_COLOR[a] for a in ARCH_ORDER], alpha=0.85,
+               yerr=[s["mean"] - s["min"], s["max"] - s["mean"]], error_kw=dict(ecolor="black", **S.ERRORBAR))
+        for i, arch in enumerate(ARCH_ORDER):
+            seeds = margins[(margins["attribute"] == attr) & (margins["arch"] == arch)]["margin"]
+            ax.plot(np.full(len(seeds), i + 0.38), seeds, ls="none", marker=S.MODEL_MARKER[arch],
+                    ms=2.5, color=S.MODEL_COLOR[arch], mec="black", mew=0.3)
+        ax.axhline(0, color="black", lw=0.6)
+        ax.set_xticks(x, [S.MODEL_NAME[a].replace(" ", "\n", 1) if a != "crnn_gru" else "GRU-\nCRNN"
+                          for a in ARCH_ORDER])
+        ax.set_title(TITLES[attr])
+        S.light_grid(ax)
+    axes[0].set_ylabel("Trained \u2212 untrained accuracy")
+    S.save(fig, "seed_margins")
     print(summary.to_string(index=False))
-    print(f"wrote {OUT_PNG}")
 
 
 if __name__ == "__main__":

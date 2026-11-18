@@ -7,7 +7,9 @@ features and the latest probe results.
     python figures/plot_layerwise_probes.py --decodability-only --run results/probing_layerwise_cnn1d
 
 Produces:
-    figures/output/day3_decodability_<attr>.png   (3 lines + chance)
+    probe_layerwise_sex.{pdf,png}, probe_layerwise_speaker.{pdf,png}
+                                                  (paper figures, IEEE style, in figures/ and paper/figures/)
+    figures/output/day3_decodability_<attr>.png   (accent / age_bin, exploratory)
     figures/output/day3_embed_<block>.png          (PCA/t-SNE x digit/sex/speaker)
     <run_dir>/cluster_mi.json                     (KMeans-vs-attribute MI)
     <run_dir>/day3_summary.json                   (peak / margin / trend per attr)
@@ -22,6 +24,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from figures import ieee_style as S
 from src.probing.extract import load_features, load_labels
 from src.utils.config import load_config, resolve
 from src.viz.decodability import BLOCK_ORDER, plot_decodability
@@ -35,8 +38,43 @@ def latest_run(cfg: dict) -> Path:
     return Path(ptr.read_text(encoding="utf-8").strip())
 
 
+PAPER_FIGURES = {"sex": "probe_layerwise_sex", "speaker_id": "probe_layerwise_speaker"}
+
+
+def paper_decodability(df, attr: str, name: str) -> None:
+    """Layer-wise linear-probe accuracy: trained, untrained, raw input and chance (IEEE style)."""
+    a = df[(df["attribute"] == attr) & (df["probe"] == "linear")]
+    tr = a[a["model"] == "trained"].set_index("block").reindex(BLOCK_ORDER)["acc"]
+    un = a[a["model"] == "untrained"].set_index("block").reindex(BLOCK_ORDER)["acc"]
+    raw = float(a[a["model"] == "raw"]["acc"].iloc[0])
+    chance = float(a["chance"].iloc[0])
+    x = range(len(BLOCK_ORDER))
+    color = S.MODEL_COLOR["cnn1d"]
+
+    fig, ax = S.figure(2.9, 1.9)
+    ax.plot(x, tr.to_numpy(), color=color, marker="o", ls=S.LINESTYLE["trained"], label="Trained")
+    ax.plot(x, un.to_numpy(), color=color, marker="o", mfc="white", ls=S.LINESTYLE["untrained"],
+            label="Untrained")
+    ax.axhline(raw, color=S.NEUTRAL_DARK, lw=1.0, ls=S.LINESTYLE["raw"], label="Raw input")
+    ax.axhline(chance, label="Chance", **S.CHANCE)
+    ax.set_xticks(list(x), BLOCK_ORDER)
+    ax.set_xlabel("Layer")
+    ax.set_ylabel("Probe accuracy")
+    if attr == "sex":
+        ax.set_ylim(0.7, 1.0)
+        ax.legend(loc="lower right", ncol=2)
+    else:
+        ax.set_ylim(0, 1.0)
+        ax.legend(loc="lower right", ncol=2)
+    S.light_grid(ax)
+    S.save(fig, name)
+
+
 def build_decodability(df, cfg, figs_dir) -> None:
     for attr in df["attribute"].unique():
+        if attr in PAPER_FIGURES:
+            paper_decodability(df, attr, PAPER_FIGURES[attr])
+            continue
         out = figs_dir / f"day3_decodability_{attr}.png"
         plot_decodability(df, attr, probe="linear", save_path=out)
         print(f"[fig] {out}")

@@ -4,11 +4,12 @@ Redraws paper figure dftlrp_band_share.png from saved results only (no model, no
   results/freq_occlusion/occlusion_results.csv   (scripts/xai_freq_occlusion.py, seed 42)
   results/dft_lrp/dftlrp_band_relevance.csv      (scripts/xai_dft_lrp.py, seed 42)
 
-Normalisation (matches the published figure): each profile is divided by its own sum
+IEEE style (figures/ieee_style.py); written as PDF + 600-dpi PNG into figures/ and
+paper/figures/. Normalisation: each profile is divided by its own sum
 over the 16 bands, so it reads as a share of total reliance. Occlusion drops below
 zero (removing the band slightly *raised* accuracy) are clipped to 0 before
-normalising. The r in each panel title is the Pearson correlation between the raw
-(unclipped, unnormalised) occlusion drops and the band relevance.
+normalising. The Pearson r between the raw (unclipped, unnormalised) occlusion drops
+and the band relevance is printed and saved below; it belongs in the caption.
 
 Also rewrites results/dft_lrp/present_vs_used_summary.csv: the necessity-vs-attribution
 r per architecture and, from the occlusion profiles split by speaker sex, the
@@ -23,15 +24,19 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+import sys
+
 import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from figures import ieee_style as S  # noqa: E402
+
 OCCLUSION_CSV = ROOT / "results" / "freq_occlusion" / "occlusion_results.csv"
 DFTLRP_CSV = ROOT / "results" / "dft_lrp" / "dftlrp_band_relevance.csv"
 SUMMARY_CSV = ROOT / "results" / "dft_lrp" / "present_vs_used_summary.csv"
-OUT_PNG = ROOT / "figures" / "output" / "dftlrp_band_share.png"
 
 DFTLRP_ARCHS = ["cnn1d", "resnet1d"]
 ALL_ARCHS = ["cnn1d", "resnet1d", "crnn_gru", "spec_cnn2d"]
@@ -48,7 +53,7 @@ def main() -> None:
     att = pd.read_csv(DFTLRP_CSV)
 
     rows = []
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.6))
+    fig, axes = S.figure(4.15, 1.7, 1, 2, sharey=True)
     for ax, arch in zip(axes, DFTLRP_ARCHS):
         need = profile(occ, arch, "all", "acc_drop")
         attr = profile(att, arch, "all", "mean_abs_relevance")
@@ -61,23 +66,21 @@ def main() -> None:
         rows.append({"arch": arch, "analysis": "need_vs_attr_all", "metric": "pearson_r", "value": round(r, 4)})
 
         drop_clipped = np.clip(drop, 0.0, None)
-        ax.plot(center, drop_clipped / drop_clipped.sum(), marker="o", color="tab:blue",
-                label="necessity (occlusion drop)")
-        ax.plot(center, rel / rel.sum(), marker="s", color="tab:orange",
-                label="attribution (|DFT-LRP|)")
-        ax.set_title(f"{arch}: necessity vs. attribution (r={r:.2f})")
-        ax.set_xlabel("freq band center (Hz)")
-        ax.set_ylabel("normalized reliance")
-        ax.grid(alpha=0.3)
-        ax.legend(loc="upper right")
+        S.shade_speech_regions(ax, stagger=True)
+        ax.plot(center, drop_clipped / drop_clipped.sum(), marker="o", color=S.NECESSITY,
+                label="Necessity (occlusion)")
+        ax.plot(center, rel / rel.sum(), marker="s", color=S.ATTRIBUTION, label="Attribution (|DFT-LRP|)")
+        ax.set_title(S.MODEL_NAME[arch])
+        ax.set_xlim(0, 4000)
+        ax.set_ylim(0, 0.8)
+        ax.set_xlabel("Frequency band centre (Hz)")
 
         share = rel / rel.sum()
         print(f"{arch}: r={r:.4f}  |DFT-LRP| share 0-250 Hz={share[0]:.1%}  below 750 Hz={share[:3].sum():.1%}")
 
-    fig.tight_layout()
-    OUT_PNG.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT_PNG, dpi=150)
-    plt.close(fig)
+    axes[0].set_ylabel("Share of total")
+    axes[1].legend(loc="upper right")
+    S.save(fig, "dftlrp_band_share")
 
     # female-vs-male necessity profiles (occlusion only, all four architectures)
     for arch in ALL_ARCHS:
@@ -93,7 +96,7 @@ def main() -> None:
         print(f"{arch}: female-vs-male necessity r={r_fm:.4f}, max divergence at {center_k:.0f} Hz")
 
     pd.DataFrame(rows).to_csv(SUMMARY_CSV, index=False)
-    print(f"wrote {OUT_PNG} and {SUMMARY_CSV}")
+    print(f"wrote {SUMMARY_CSV}")
 
 
 if __name__ == "__main__":

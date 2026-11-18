@@ -203,10 +203,10 @@ def distribution_figure(fig_data: dict) -> Path:
             med.set(color=ARCH_COLORS[arch], linewidth=1.5)
         signed = [d["s_signed"][k] for k in range(N_DIGITS)]
         ax.scatter(range(N_DIGITS), signed, marker="D", s=45, color="#c0392b", zorder=5,
-                   label="signed |J_mean_k . u_hat| (s_k)")
+                   label="signed |J_mean_k . sex direction| (s_k)")
         ax.set_title(arch, fontsize=11)
         ax.set_xlabel("digit")
-        ax.set_ylabel("|J_k(x) . u_hat|  (per utterance)")
+        ax.set_ylabel("|J_k(x) . sex direction|  (per utterance)")
         ax.legend(fontsize=8, loc="upper right")
         ax.grid(axis="y", alpha=0.25)
     fig.suptitle(
@@ -292,42 +292,32 @@ def counterfactual(cfg, device, test_idx, sex, digit, seed=PRIMARY_SEED) -> pd.D
     return df
 
 
-def counterfactual_figure(fig_data: dict) -> Path:
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
+def counterfactual_figure(fig_data: dict) -> str:
+    """Paper figure counterfactual_shift (IEEE style): change in the correct-digit logit
+    (mean +/- SD over recordings) and accuracy when penultimate representations are shifted
+    along the sex direction by delta times the female-male projection gap."""
+    from figures import ieee_style as S
+
+    fig, (ax1, ax2) = S.figure(3.5, 1.5, 1, 2)
     for arch in SCOPE_ARCHS:
         d = fig_data[arch]
         delta = np.array(d["delta"])
-        mdl = np.array(d["mean_dlogit"])
-        sdl = np.array(d["std_dlogit"])
-        color = ARCH_COLORS[arch]
-        ax1.plot(delta, mdl, marker="o", color=color, label=arch)
-        ax1.fill_between(delta, mdl - sdl, mdl + sdl, color=color, alpha=0.12)
-        ax2.plot(delta, d["acc"], marker="o", color=color, label=arch)
-
+        mdl, sdl = np.array(d["mean_dlogit"]), np.array(d["std_dlogit"])
+        S.model_line(ax1, delta, mdl, arch)
+        ax1.fill_between(delta, mdl - sdl, mdl + sdl, color=S.MODEL_COLOR[arch], alpha=0.15, lw=0)
+        S.model_line(ax2, delta, np.array(d["acc"]), arch)
     for ax in (ax1, ax2):
-        ax.axvline(1, color="#888888", ls="--", lw=1)
-        ax.axvline(-1, color="#888888", ls="--", lw=1)
-        ax.axvline(0, color="black", lw=0.8)
-        ax.set_xlabel("delta (multiples of the empirical male<->female projection gap)")
-        ax.legend(fontsize=9)
-        ax.grid(alpha=0.25)
-
-    ax1.set_ylabel("mean Delta(correct-digit logit)")
-    ax1.set_title("Logit response to moving along u_hat")
-    ax2.set_ylabel("accuracy")
-    ax2.set_title("Accuracy under the same perturbation")
-    ax2.set_ylim(-0.02, 1.02)
-
-    fig.suptitle(
-        "Counterfactual: does perturbing along the validated sex direction move the digit readout?\n"
-        f"{FLAG}  |  dashed lines mark delta=+-1 (\"swap sex position\")",
-        fontsize=9.5,
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.85])
-    fig.savefig(FIG_CF_PATH, dpi=150)
-    plt.close(fig)
-    print(f"[counterfactual] figure -> {FIG_CF_PATH}")
-    return FIG_CF_PATH
+        ax.axvline(0, color="black", lw=0.6)
+        ax.set_xlabel("Shift δ (× sex gap)")
+        ax.set_xticks([-3, -2, -1, 0, 1, 2, 3])
+        S.light_grid(ax)
+    ax1.set_ylabel("Δ correct-digit logit")
+    ax2.set_ylabel("Accuracy")
+    ax2.set_ylim(0.95, 1.002)
+    fig.legend(*ax2.get_legend_handles_labels(), loc="outside upper center", ncol=2)
+    S.save(fig, "counterfactual_shift")
+    print("[counterfactual] figure -> counterfactual_shift")
+    return "counterfactual_shift"
 
 
 # --------------------------------------------------------------------------- #
@@ -369,7 +359,7 @@ def crossseed(cfg, device, test_idx) -> pd.DataFrame:
     return df
 
 
-def redraw_counterfactual_from_saved() -> Path:
+def redraw_counterfactual_from_saved() -> str:
     """Redraw the counterfactual figure from results/sex_direction/readout_counterfactual.csv."""
     df = pd.read_csv(OUT_COUNTERFACTUAL_CSV)
     fig_data = {}

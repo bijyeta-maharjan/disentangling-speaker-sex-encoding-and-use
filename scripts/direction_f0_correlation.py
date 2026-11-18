@@ -63,6 +63,7 @@ Not done here: formants and cross-seed stability (direction_formant_correlation.
 readout sensitivity, digit-conditioned splits, resnet1d/crnn_gru.
 
     python scripts/direction_f0_correlation.py
+    python scripts/direction_f0_correlation.py --redraw   # figure only, from the saved per-point file
 """
 from __future__ import annotations
 
@@ -255,7 +256,7 @@ def run_f0_correlation(cfg: dict) -> pd.DataFrame:
                                   female_df["score"].to_numpy(), female_df["speaker"].to_numpy(), directional=True)
         rows.extend([r_male, r_all, r_female])
 
-        print(f"[f0] {arch}: MALES-ONLY (anchor) spearman_rho={r_male['spearman_rho']:+.3f} "
+        print(f"[f0] {arch}: MALES-ONLY spearman_rho={r_male['spearman_rho']:+.3f} "
               f"(n={r_male['n_utts']} utts, {r_male['n_speakers']} speakers)  |  "
               f"all rho={r_all['spearman_rho']:+.3f} (n=3F/9M, DIRECTIONAL)  |  "
               f"females-only rho={r_female['spearman_rho']:+.3f} (n=3 speakers, DIRECTIONAL)")
@@ -266,8 +267,11 @@ def run_f0_correlation(cfg: dict) -> pd.DataFrame:
     df_out.to_csv(OUT_CSV, index=False)
     print(f"[f0] table -> {OUT_CSV}")
 
-    fig_path = headline_figure(fig_data)
-    print(f"[f0] headline figure -> {fig_path}")
+    points = pd.concat([d.assign(arch=a)[["arch", "row_idx", "speaker", "sex", "digit", "f0_median_hz", "score"]]
+                        for a, d in fig_data.items()], ignore_index=True).rename(columns={"score": "projection"})
+    points.to_csv(POINTS_CSV, index=False)
+    print(f"[f0] per-recording projections -> {POINTS_CSV}")
+    f0_figure(points)
 
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     with open(RUNS_DIR / "f0_correlation_run_meta.json", "w", encoding="utf-8") as fh:
@@ -285,51 +289,43 @@ def run_f0_correlation(cfg: dict) -> pd.DataFrame:
     return df_out
 
 
-def headline_figure(fig_data: dict[str, pd.DataFrame]) -> Path:
-    fig, axes = plt.subplots(1, len(SCOPE_ARCHS), figsize=(7 * len(SCOPE_ARCHS), 6))
-    if len(SCOPE_ARCHS) == 1:
-        axes = [axes]
-    for ax, arch in zip(axes, SCOPE_ARCHS):
-        df = fig_data[arch]
-        male_df = df[df["sex"] == "male"]
-        female_df = df[df["sex"] == "female"]
-        ax.scatter(male_df["f0_median_hz"], male_df["score"], s=10, alpha=0.35,
-                   color="#2980b9", label=f"male (n={male_df['speaker'].nunique()} spk)")
-        ax.scatter(female_df["f0_median_hz"], female_df["score"], s=10, alpha=0.55,
-                   color="#c0392b", label=f"female (n={female_df['speaker'].nunique()} spk, n=3)")
+POINTS_CSV = OUT_DIR / "f0_projection_per_recording.csv"
 
-        rho_m, _ = spearmanr(male_df["f0_median_hz"], male_df["score"])
-        rho_all, _ = spearmanr(df["f0_median_hz"], df["score"])
-        rho_f, _ = spearmanr(female_df["f0_median_hz"], female_df["score"])
 
-        ax.set_title(arch, fontsize=12)
-        ax.set_xlabel("median F0 (Hz), 8kHz signal")
-        ax.set_ylabel("projection onto whitened sex direction (score = w·x)")
-        ax.legend(fontsize=8, loc="best")
-        ax.grid(alpha=0.25)
-        ax.text(0.02, 0.98, f"MALES-ONLY ρ = {rho_m:+.3f}  (anchor, n=9 speakers)",
-                transform=ax.transAxes, va="top", ha="left", fontsize=10.5, fontweight="bold",
-                bbox=dict(boxstyle="round", fc="white", alpha=0.85))
-        ax.text(0.02, 0.88,
-                f"all (cross-sex) ρ = {rho_all:+.3f}  [n=3 female, directional]\n"
-                f"females-only ρ = {rho_f:+.3f}  [n=3 female, directional]",
-                transform=ax.transAxes, va="top", ha="left", fontsize=9,
-                bbox=dict(boxstyle="round", fc="white", alpha=0.85))
+def f0_figure(points: pd.DataFrame) -> None:
+    """Paper Fig. A1d: projection onto the sex direction vs. median F0, per recording (IEEE style)."""
+    from figures import ieee_style as S
 
-    fig.suptitle(
-        "Does the validated whitened sex direction track F0 -- especially within males alone?\n"
-        f"{FLAG}\n"
-        "Scope: cnn1d + spec_cnn2d only (resnet1d/crnn_gru direction unvalidated, excluded).",
-        fontsize=10.5,
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.87])
-    FIGS_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIG_PATH, dpi=150)
-    plt.close(fig)
-    return FIG_PATH
+    fig, axes = S.figure(6.3, 2.2, 1, len(SCOPE_ARCHS))
+    for ax, arch in zip(np.atleast_1d(axes), SCOPE_ARCHS):
+        df = points[points["arch"] == arch]
+        for sex in ("male", "female"):
+            d = df[df["sex"] == sex]
+            ax.scatter(d["f0_median_hz"], d["projection"], s=1.5, lw=0, alpha=0.35,
+                       color=S.SEX_COLOR[sex], rasterized=True,
+                       label=f"{S.SEX_LABEL[sex]} ({d['speaker'].nunique()} speakers)")
+        ax.set_title(S.MODEL_NAME[arch])
+        ax.set_xlabel("Median F0 (Hz)")
+        S.light_grid(ax, "both")
+    np.atleast_1d(axes)[0].set_ylabel("Projection on sex direction")
+    leg = np.atleast_1d(axes)[0].legend(loc="upper left", markerscale=4)
+    for h in leg.legend_handles:
+        h.set_alpha(1)
+    S.save(fig, "direction_vs_f0")
+
+
+def redraw_from_saved() -> None:
+    f0_figure(pd.read_csv(POINTS_CSV, dtype={"speaker": str}))
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--redraw", action="store_true",
+                    help="only redraw the figure from results/sex_direction/f0_projection_per_recording.csv")
+    if ap.parse_args().redraw:
+        redraw_from_saved()
+        return
     cfg = load_config(DEFAULT_CONFIG)
     df = run_f0_correlation(cfg)
     print("\n================ F0 CORRELATION ================")

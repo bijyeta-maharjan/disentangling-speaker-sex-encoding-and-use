@@ -52,6 +52,7 @@ mean-difference CAV as a working direction (it appears ONLY as a labelled
 reference line in the headline figure, carried over from direction_stability.py).
 
     python scripts/direction_resplit_control.py
+    python scripts/direction_resplit_control.py --redraw   # figure only, from the saved per-point file
 """
 from __future__ import annotations
 
@@ -161,7 +162,7 @@ def run_resplit_control(cfg: dict) -> dict:
     raw_cav_table = pd.read_csv(DIRECTION_STABILITY_CSV) if DIRECTION_STABILITY_CSV.exists() else None
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    rows, fig_data = [], {}
+    rows, fig_data, point_rows = [], {}, []
     t_start = time.time()
 
     for arch in ARCH_ORDER:
@@ -215,6 +216,10 @@ def run_resplit_control(cfg: dict) -> dict:
             "flag": FLAG, "three_women_caveat": THREE_WOMEN_CAVEAT,
         })
         fig_data[arch] = {"null": null_cosines, "sex_cosine": sex_whitened_cosine, "raw_cav": raw_cav_cosine}
+        point_rows.append({"arch": arch, "kind": "sex", "resplit_index": -1,
+                           "group_a": ";".join(sorted(female_spk)), "cosine": sex_whitened_cosine})
+        point_rows += [{"arch": arch, "kind": "null", "resplit_index": i, "group_a": ";".join(ga),
+                        "cosine": float(c)} for i, ((ga, _gb), c) in enumerate(zip(resplits, null_cosines))]
         print(f"[resplit] {arch}: sex_whitened_cosine={sex_whitened_cosine:+.3f}  "
               f"random p50={random_p50:+.3f} p95={random_p95:+.3f}  "
               f"sex_percentile={sex_percentile:.1f}  alignment resid={alignment_quality_resid:.3f} "
@@ -226,7 +231,10 @@ def run_resplit_control(cfg: dict) -> dict:
     out_csv = OUT_DIR / "resplit_control.csv"
     df.to_csv(out_csv, index=False)
 
-    fig_path = headline_figure(fig_data, FIGS_DIR / "whitened_direction_null.png")
+    points = pd.DataFrame(point_rows)
+    points.to_csv(NULL_POINTS_CSV, index=False)
+    null_figure(points, df)
+    fig_path = NULL_POINTS_CSV
 
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     with open(RUNS_DIR / "resplit_control_run_meta.json", "w", encoding="utf-8") as fh:
@@ -239,44 +247,53 @@ def run_resplit_control(cfg: dict) -> dict:
             "rows": rows,
         }, fh, indent=2)
     print(f"[resplit] table -> {out_csv}")
-    print(f"[resplit] headline figure -> {fig_path}")
+    print(f"[resplit] per-point null cosines -> {fig_path}")
     return {"table": df, "fig": str(fig_path)}
 
 
-def headline_figure(fig_data: dict, out_path: Path) -> Path:
-    fig, axes = plt.subplots(2, 2, figsize=(12, 9))
-    for ax, arch in zip(axes.flat, ARCH_ORDER):
-        d = fig_data[arch]
-        ax.hist(d["null"], bins=30, color="#95a5a6", alpha=0.85,
-                label=f"random 3v9 re-split null (n={len(d['null'])})")
-        ax.axvline(d["sex_cosine"], color="#c0392b", lw=2.2, label="real sex direction (whitened)")
-        if not np.isnan(d["raw_cav"]):
-            ax.axvline(d["raw_cav"], color="#2980b9", lw=1.6, ls="--",
-                       label="raw mean-diff CAV (reference)")
-        title = arch + ("  [negative control]" if arch == "crnn_gru" else "")
-        ax.set_title(title, fontsize=10)
-        ax.set_xlabel("aligned cross-seed cosine")
-        ax.set_ylabel("count (of 219 re-splits)")
-        ax.legend(fontsize=7, loc="upper left")
-        ax.grid(axis="y", alpha=0.3)
-    fig.suptitle(
-        "Is the WHITENED sex direction separable from an arbitrary 3-vs-9 re-split of the same 12 speakers?\n"
-        f"{FLAG}\n"
-        "Removes the generic-12-person-contrast confound ONLY — does NOT remove the three-women confound "
-        "(does not imply generalization beyond these three).",
-        fontsize=9.5,
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.88])
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_path, dpi=150)
-    plt.close(fig)
-    return out_path
+NULL_POINTS_CSV = OUT_DIR / "resplit_null_cosines.csv"
+
+
+def null_figure(points: pd.DataFrame, summary: pd.DataFrame) -> None:
+    """Paper Fig. A1c: per model, the 219 re-split null cosines, the observed sex-direction
+    cosine and the confounded raw mean-difference reference (IEEE style)."""
+    from figures import ieee_style as S
+
+    fig, axes = S.figure(3.0, 2.2, 2, 2, sharex=True, sharey=True)
+    bins = np.linspace(min(-0.2, points["cosine"].min()), 1.0, 31)
+    summ = summary.set_index("arch")
+    for ax, arch in zip(axes.flat, S.MODEL_ORDER):
+        null = points[(points["arch"] == arch) & (points["kind"] == "null")]["cosine"]
+        sex = float(points[(points["arch"] == arch) & (points["kind"] == "sex")]["cosine"].iloc[0])
+        ax.hist(null, bins=bins, color=S.NULL_GREY, lw=0, label="219 re-splits")
+        ax.axvline(sex, color=S.OBSERVED, lw=1.0, label="Sex direction")
+        raw = summ.loc[arch, "raw_cav_cosine_reference"]
+        if pd.notna(raw):
+            ax.axvline(float(raw), color=S.REFERENCE_GREY, lw=0.8, ls="--", label="Raw mean difference")
+        ax.set_title(S.MODEL_NAME[arch])
+        S.light_grid(ax)
+    for ax in axes[1, :]:
+        ax.set_xlabel("Cross-seed cosine")
+    for ax in axes[:, 0]:
+        ax.set_ylabel("Count")
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="outside upper center", ncol=3, handlelength=1.4)
+    S.save(fig, "whitened_direction_null")
+
+
+def redraw_from_saved() -> None:
+    null_figure(pd.read_csv(NULL_POINTS_CSV, keep_default_na=False), pd.read_csv(OUT_DIR / "resplit_control.csv"))
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=str(DEFAULT_CONFIG))
+    ap.add_argument("--redraw", action="store_true",
+                    help="only redraw the figure from results/sex_direction/resplit_null_cosines.csv")
     args = ap.parse_args()
+    if args.redraw:
+        redraw_from_saved()
+        return
     cfg = load_config(args.config)
     h = run_resplit_control(cfg)
     print("\n================ RESPLIT CONTROL ================")

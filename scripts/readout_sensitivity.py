@@ -275,49 +275,41 @@ def run_readout_sensitivity(cfg: dict) -> pd.DataFrame:
     return df
 
 
-def headline_figure(fig_data: dict) -> Path:
-    """Sequential single-hue heatmap (percentile is a magnitude, not a polarity):
-    one hue light->dark, never a rainbow."""
+def headline_figure(fig_data: dict) -> str:
+    """Paper figure readout_jacobian_heatmap (IEEE style): per digit, the percentile of the
+    readout sensitivity along the sex direction within 1,000 random directions (seed 42).
+    Sequential single-hue map (a percentile is a magnitude); cells exceeding the 95th
+    percentile would be outlined (none do)."""
+    from figures import ieee_style as S
+
     archs = SCOPE_ARCHS
     mat = np.stack([fig_data[a]["percentile"] for a in archs])  # (n_arch, 10)
     exceeds = np.stack([fig_data[a]["exceeds_95"] for a in archs])
 
-    fig, ax = plt.subplots(figsize=(11, 4.2))
+    fig, ax = S.figure(3.5, 1.3)
     im = ax.imshow(mat, aspect="auto", cmap="Blues", vmin=0, vmax=100)
-    ax.set_xticks(range(N_DIGITS))
-    ax.set_xticklabels(range(N_DIGITS))
-    ax.set_yticks(range(len(archs)))
-    ax.set_yticklabels(archs)
-    ax.set_xlabel("digit")
-
+    ax.set_xticks(range(N_DIGITS), [str(d) for d in range(N_DIGITS)])
+    ax.set_yticks(range(len(archs)), [S.MODEL_NAME[a] for a in archs])
+    ax.tick_params(length=0)
+    ax.set_xlabel("Digit")
+    for side in ("left", "bottom"):
+        ax.spines[side].set_visible(False)
     for i in range(len(archs)):
         for j in range(N_DIGITS):
             val = mat[i, j]
-            txt_color = "white" if val > 55 else "#1a1a1a"
-            ax.text(j, i, f"{val:.0f}", ha="center", va="center", fontsize=9, color=txt_color)
+            ax.text(j, i, f"{val:.0f}", ha="center", va="center", fontsize=7,
+                    color="white" if val > 55 else "black")
             if exceeds[i, j]:
-                ax.add_patch(plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False,
-                                            edgecolor="#c0392b", lw=2.5))
-
-    cbar = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
-    cbar.set_label("null percentile (vs. 1000 random directions)")
-
-    fig.suptitle(
-        "Readout sensitivity to the validated sex direction, per digit (seed 42)\n"
-        f"{FLAG}\n"
-        "Bounds ONLY the linear readout's sensitivity to the penultimate sex direction --\n"
-        "does NOT establish whether earlier layers route sex-correlated features upstream of digit features.\n"
-        "Red outline = exceeds the 95th percentile of the random-direction null. Scope: cnn1d + spec_cnn2d only.",
-        fontsize=8.8, x=0.5, ha="center",
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.74])
-    FIGS_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIG_PATH, dpi=150)
-    plt.close(fig)
-    return FIG_PATH
+                ax.add_patch(plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor="black", lw=1.0))
+    cbar = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.02, aspect=12)
+    cbar.set_label("Percentile", fontsize=8)
+    cbar.ax.tick_params(labelsize=7, width=0.6, length=2)
+    cbar.outline.set_linewidth(0.6)
+    S.save(fig, "readout_jacobian_heatmap")
+    return "readout_jacobian_heatmap"
 
 
-def redraw_from_saved() -> Path:
+def redraw_from_saved() -> str:
     """Redraw the heatmap from results/sex_direction/readout_sensitivity_seed42.csv."""
     df = pd.read_csv(OUT_CSV)
     fig_data = {arch: {"percentile": df[df["arch"] == arch].sort_values("digit")["percentile"].to_numpy(),
