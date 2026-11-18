@@ -695,8 +695,8 @@ Sex therefore matters somewhere, just not along the direction we measured.
 \centering
 \paperfig[0.62\linewidth]{\FigMaleOnly}
 \caption{Accuracy gap relative to the speaker-independent baseline, for
-\texttt{cnn1d} and \texttt{spec\_cnn2d}. Purple: trained without women,
-tested on the three SI test women. Green: trained on the same number (38)
+\texttt{cnn1d} and \texttt{spec\_cnn2d}. Orange: trained without women,
+tested on the three SI test women. Blue: trained on the same number (38)
 of men, tested on the nine SI test men.}
 \label{fig:maleonly}
 \end{figure}
@@ -707,7 +707,7 @@ of men, tested on the nine SI test men.}
 \begin{minipage}[b]{0.55\textwidth}\centering\paperfig[\linewidth]{\FigFtRecovery}\\[1pt]{\footnotesize (a)}\end{minipage}\hfill
 \begin{minipage}[b]{0.43\textwidth}\centering\paperfig[\linewidth]{\FigFtBands}\\[1pt]{\footnotesize (b)}\end{minipage}
 \caption{(a) Change in digit accuracy from fine-tuning (after minus before),
-per fold, for held-out women (red) and the male control (blue); error bars show
+per fold, for held-out women (orange) and the male control (blue); error bars show
 the min--max over seeds 42/43/44. (b) Relative change in DFT-LRP relevance per
 frequency band after fine-tuning, female vs.\ male control (\texttt{cnn1d};
 min--max over seeds and folds).}
@@ -827,11 +827,11 @@ is available at \url{https://github.com/soerenab/AudioMNIST}.
 (left) and speaker identity (right), mean and range over seeds 42/43/44.
 (b) DFT-LRP faithfulness for \texttt{cnn1d}: mean predicted-class probability
 as frequency bins are removed in MoRF, random and LeRF order. (c) Cross-seed
-reproducibility of the sex direction $\hat{u}$ (red) against all 219
+reproducibility of the sex direction $\hat{u}$ (black line) against all 219
 alternative 3-vs-9 splits of the same 12 speakers (grey); dashed: the
 confounded raw mean-difference direction. (d) Projection of each clip onto
 the sex direction $\hat{u}$ vs.\ median F0 for \texttt{cnn1d} and
-\texttt{spec\_cnn2d}; blue: male (9 speakers), red: female (3 speakers).}
+\texttt{spec\_cnn2d}; blue: male (9 speakers), orange: female (3 speakers).}
 \label{fig:app}
 \end{figure*}
 
